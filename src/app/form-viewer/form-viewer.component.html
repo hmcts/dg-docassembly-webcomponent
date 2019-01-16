@@ -1,3 +1,9 @@
-<p>
-  form-viewer works!
-</p>
+<div class="col-sm">
+  <h2>Form preview</h2>
+  <form [formGroup]="form" >
+    <formly-form [model]="model" [fields]="fields" [form]="form">
+    </formly-form>
+  </form>
+</div>
+
+<button class="govuk-button" (click)="getFormFields()">Refresh</button>
