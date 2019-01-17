@@ -16,7 +16,6 @@ export class FormViewerComponent implements OnInit, OnDestroy {
   form = new FormGroup({});
   model: any = {};
   fields: FormlyFieldConfig[] = [];
-  arr: any;
 
   constructor(private http: HttpClient) { }
 
