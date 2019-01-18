@@ -1,26 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { FormViewerComponent } from './form-viewer/form-viewer.component';
-import { DocumentViewerComponent } from './document-viewer/document-viewer.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { FormlyModule } from '@ngx-formly/core';
-import { JuiFormlyLibModule } from 'jui-formly-lib';
-import { HttpClientModule } from '@angular/common/http';
+import { AssemblyModule } from './assembly/assembly.module';
+
+const routes: Routes = [
+  { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: 'assembly', loadChildren: () => AssemblyModule }
+];
 
 @NgModule({
   declarations: [
-    AppComponent,
-    FormViewerComponent,
-    DocumentViewerComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule,
-    FormlyModule.forRoot(),
-    JuiFormlyLibModule,
-    HttpClientModule
+    CommonModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
