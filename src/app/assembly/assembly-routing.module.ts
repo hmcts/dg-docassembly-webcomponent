@@ -5,7 +5,7 @@ import { TemplateSelectorComponent } from './template-selector/template-selector
 
 const routes: Routes = [
   { path: 'viewer', component: AssemblyViewerComponent },
-  { path: 'selector', component: TemplateSelectorComponent }
+  { path: '', component: TemplateSelectorComponent },
 ];
 
 @NgModule({

@@ -1,0 +1,29 @@
+<div class="govuk-width-container">
+  <main class="govuk-main-wrapper">
+
+    <div class="govuk-grid-row">
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="name">
+          Template Name
+        </label>
+        <input #documentName
+               class="govuk-input"
+               id="name"
+               name="name"
+               type="text">
+      </div>
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="sort">
+          File Type
+        </label>
+        <select #documentType
+                class="govuk-select"
+                id="sort"
+                name="sort">
+          <option *ngFor="let type of fileType" [value]="type">{{ type }}</option>
+        </select>
+      </div>
+      <a routerLink="./viewer" type="submit" class="govuk-button" (click)="addFile(documentName.value, documentType.value)">Continue</a>
+    </div>
+  </main>
+</div>

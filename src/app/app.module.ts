@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { AssemblyModule } from './assembly/assembly.module';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: '', redirectTo: '/assembly', pathMatch: 'full' },
   { path: 'assembly', loadChildren: () => AssemblyModule }
 ];
 

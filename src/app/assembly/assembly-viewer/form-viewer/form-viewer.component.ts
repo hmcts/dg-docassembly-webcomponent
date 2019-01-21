@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
+import { TemplatesService } from '../../shared/templates.service';
 
 @Component({
   selector: 'app-form-viewer',
@@ -10,14 +11,13 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./form-viewer.component.scss']
 })
 export class FormViewerComponent implements OnInit, OnDestroy {
-  private url = 'http://localhost:9000/api/templates/SimpleParagraphsSpike.docx/uiDefinition';
-
   private formFieldsSub: Subscription;
   form = new FormGroup({});
   model: any = {};
   fields: FormlyFieldConfig[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private templatesService: TemplatesService) { }
 
   ngOnInit() {
     this.getFormFields();
@@ -30,12 +30,8 @@ export class FormViewerComponent implements OnInit, OnDestroy {
   }
 
   getFormFields() {
-    this.http.get(this.url).subscribe((field) =>
+    this.templatesService.getTemplateUiDefinition().subscribe((field) =>
       this.fields = [].concat(JSON.parse(JSON.stringify(field))));
-  }
-
-  onClick() {
-    this.getFormFields();
   }
 
 }

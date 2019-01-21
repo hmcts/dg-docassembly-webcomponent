@@ -10,6 +10,7 @@ import { DocumentViewerComponent } from './assembly-viewer/document-viewer/docum
 import { TemplateSelectorComponent } from './template-selector/template-selector.component';
 import { AssemblyViewerComponent } from './assembly-viewer/assembly-viewer.component';
 import { AssemblyRoutingModule } from './assembly-routing.module';
+import { TemplatesService } from './shared/templates.service';
 
 
 @NgModule({
@@ -27,7 +28,7 @@ import { AssemblyRoutingModule } from './assembly-routing.module';
     HttpClientModule,
     AssemblyRoutingModule
   ],
-  providers: [],
+  providers: [TemplatesService],
   bootstrap: []
 })
 export class AssemblyModule { }
