@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
-import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { TemplatesService } from '../../shared/templates.service';
 
@@ -16,8 +15,7 @@ export class FormViewerComponent implements OnInit, OnDestroy {
   model: any = {};
   fields: FormlyFieldConfig[] = [];
 
-  constructor(private http: HttpClient,
-              private templatesService: TemplatesService) { }
+  constructor(private templatesService: TemplatesService) { }
 
   ngOnInit() {
     this.getFormFields();
@@ -30,8 +28,12 @@ export class FormViewerComponent implements OnInit, OnDestroy {
   }
 
   getFormFields() {
-    this.templatesService.getTemplateUiDefinition().subscribe((field) =>
+    this.formFieldsSub = this.templatesService.getTemplateUiDefinition().subscribe((field) =>
       this.fields = [].concat(JSON.parse(JSON.stringify(field))));
+  }
+
+  onPreview() {
+    console.log(this.model);
   }
 
 }
