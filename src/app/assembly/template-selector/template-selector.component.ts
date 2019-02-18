@@ -16,7 +16,7 @@ export class TemplateSelectorComponent implements OnInit {
   }
 
   addFile(name: string, type: string) {
-    this.templatesService.setBaseUrl('http://localhost:9000/api/templates/' + name + type + '/uiDefinition');
+    this.templatesService.setBaseUrl('http://localhost:8080/api/templates/' + name + type + '/uiDefinition');
   }
 
 }
