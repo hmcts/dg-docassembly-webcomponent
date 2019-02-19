@@ -50,12 +50,12 @@ describe('TemplatesService', () => {
     expect(urlFromService).toBe(url);
   });
 
-  describe('getTemplateUiDefinition', () => {
+  describe('getUIDefinition', () => {
     it('should fetch the ui definition from the url passed', function () {
       const url = 'http://localhost/api/templates/document.docx/uiDefinition';
 
       templatesService.setBaseUrl(url);
-      templatesService.getTemplateUiDefinition().subscribe((response) => {
+      templatesService.getUIDefinition().subscribe((response) => {
         const responseObject = [].concat(JSON.parse(JSON.stringify(response)));
         expect(responseObject).toEqual(uiDefintion);
       });

@@ -23,7 +23,8 @@
           <option *ngFor="let type of fileType" [value]="type">{{ type }}</option>
         </select>
       </div>
-      <a routerLink="./viewer" type="submit" class="govuk-button" (click)="addFile(documentName.value, documentType.value)">Continue</a>
+      <a routerLink="./viewer" type="submit" class="govuk-button"
+         (click)="addFile(documentName.value, documentType.value)">Continue</a>
     </div>
   </main>
 </div>

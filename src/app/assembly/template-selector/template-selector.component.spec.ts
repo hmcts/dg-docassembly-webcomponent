@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TemplateSelectorComponent } from './template-selector.component';
 import { TemplatesService } from '../shared/templates.service';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 class MockTemplatesService {
   setBaseUrl(baseUrl: string) {}
@@ -16,9 +15,9 @@ describe('TemplateSelectorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TemplateSelectorComponent ],
+      declarations: [TemplateSelectorComponent],
       providers: [
-        { provide: TemplatesService, useFactory: () => mockTemplatesService}
+        { provide: TemplatesService, useFactory: () => mockTemplatesService }
       ]
     })
     .compileComponents();

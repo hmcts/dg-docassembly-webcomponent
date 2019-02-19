@@ -1,7 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { TemplatesService } from '../../shared/templates.service';
 
 @Component({
@@ -9,27 +9,13 @@ import { TemplatesService } from '../../shared/templates.service';
   templateUrl: './form-viewer.component.html',
   styleUrls: ['./form-viewer.component.scss']
 })
-export class FormViewerComponent implements OnInit, OnDestroy {
-  private formFieldsSub: Subscription;
+export class FormViewerComponent {
+  uiDefinition: Observable<FormlyFieldConfig[]>;
   form = new FormGroup({});
   model: any = {};
-  fields: FormlyFieldConfig[] = [];
 
-  constructor(private templatesService: TemplatesService) { }
-
-  ngOnInit() {
-    this.getFormFields();
-  }
-
-  ngOnDestroy() {
-    if (this.formFieldsSub) {
-      this.formFieldsSub.unsubscribe();
-    }
-  }
-
-  getFormFields() {
-    this.formFieldsSub = this.templatesService.getTemplateUiDefinition().subscribe((field) =>
-      this.fields = [].concat(JSON.parse(JSON.stringify(field))));
+  constructor(private templatesService: TemplatesService) {
+    this.uiDefinition = this.templatesService.getUIDefinition();
   }
 
   onPreview() {

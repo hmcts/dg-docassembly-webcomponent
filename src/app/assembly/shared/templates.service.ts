@@ -1,6 +1,11 @@
-import {HttpClient, HttpResponse} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
+import { FormlyFieldConfig } from "@ngx-formly/core";
+
+const docAssemblyApiUrl: string = 'http://localhost:9000';
+const uiDefinitionEndpoint: string = `${ docAssemblyApiUrl }/ui-definition`;
+
 
 @Injectable()
 export class TemplatesService {
@@ -16,7 +21,7 @@ export class TemplatesService {
     return this.url;
   }
 
-  getTemplateUiDefinition(): Observable<HttpResponse<any>> {
-    return this.http.get<any>(this.url);
+  getUIDefinition(): Observable<FormlyFieldConfig[]> {
+    return this.http.get<any>(uiDefinitionEndpoint);
   }
 }

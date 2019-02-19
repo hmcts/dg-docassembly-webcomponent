@@ -6,7 +6,8 @@ import { TemplatesService } from '../../shared/templates.service';
 import { of } from 'rxjs';
 
 class MockTemplatesService {
-  getTemplateUiDefinition() {}
+  getUIDefinition() {
+  }
 }
 
 describe('FormViewerComponent', () => {
@@ -30,7 +31,7 @@ describe('FormViewerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormViewerComponent ],
+      declarations: [FormViewerComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
         { provide: TemplatesService, useFactory: () => mockTemplatesService }
@@ -42,7 +43,7 @@ describe('FormViewerComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(FormViewerComponent);
     component = fixture.componentInstance;
-    spyOn(mockTemplatesService, 'getTemplateUiDefinition').and.returnValue(of(uiDefintion));
+    spyOn(mockTemplatesService, 'getUIDefinition').and.returnValue(of(uiDefintion));
     fixture.detectChanges();
   });
 
@@ -53,7 +54,6 @@ describe('FormViewerComponent', () => {
   describe('ngOnDestroy', () => {
     it('should unsubscribe from template service', function () {
       spyOn(component['formFieldsSub'], 'unsubscribe');
-      component.ngOnDestroy();
       expect(component['formFieldsSub'].unsubscribe).toHaveBeenCalled();
     });
   });
