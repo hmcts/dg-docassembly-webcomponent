@@ -6,8 +6,7 @@ import { TemplatesService } from '../../shared/templates.service';
 
 @Component({
   selector: 'app-form-viewer',
-  templateUrl: './form-viewer.component.html',
-  styleUrls: ['./form-viewer.component.scss']
+  templateUrl: './form-viewer.component.html'
 })
 export class FormViewerComponent {
   uiDefinition: Observable<FormlyFieldConfig[]>;
