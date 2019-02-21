@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { AssemblyModule } from '../../projects/rpa-dg-docassembly-webcomponent/src/lib/assembly/assembly.module';
+import { AssemblyModule } from './assembly/assembly.module';
 
 const routes: Routes = [
   { path: '', redirectTo: '/assembly', pathMatch: 'full' },
@@ -12,15 +12,13 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     CommonModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  exports: [AppComponent],
+  providers: []
 })
 export class AppModule { }

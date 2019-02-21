@@ -1,0 +1,8 @@
+{
+  "name": "rpa-dg-docassembly-webcomponent",
+  "version": "0.0.3",
+  "dependencies": {
+    "@ngx-formly/core": "^4.8.2",
+    "govuk-frontend": "^2.4.0"
+  }
+}

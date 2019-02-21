@@ -11,7 +11,11 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/ui-definition", (req, res) => {
+app.get("/api/template-rendition", (req, res) => {
+  res.send('document-url');
+});
+
+app.get("/api/form-definition/templateId", (req, res) => {
   res.send([
     {
       'key': 'exampleInput',
