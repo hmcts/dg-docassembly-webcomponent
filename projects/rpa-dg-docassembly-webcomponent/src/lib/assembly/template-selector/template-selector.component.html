@@ -11,9 +11,10 @@
                 name="sort">
           <option *ngFor="let template of templates" [value]="template">{{ template }}</option>
         </select>
+        <!--<button class="govuk-button" (submit)="selectTemplate(form)">Continue</button>-->
       </div>
       <a routerLink="./viewer" type="submit" class="govuk-button"
-         (click)="addFile(documentName.value, documentType.value)">Continue</a>
+         (click)="selectTemplate('template')">Continue</a>
     </div>
   </main>
 </div>

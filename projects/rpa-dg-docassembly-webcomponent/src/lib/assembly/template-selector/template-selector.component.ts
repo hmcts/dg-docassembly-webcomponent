@@ -7,16 +7,14 @@ import { TemplatesService } from '../shared/templates.service';
   styleUrls: ['./template-selector.component.scss']
 })
 export class TemplateSelectorComponent implements OnInit {
-  // create a emun related file ~(dont know how it works for angular)
-  fileType = [ '.docx', '.odt'];
+  templates: string[] = ['template 1', 'template 2', 'template 3'];
 
   constructor(private templatesService: TemplatesService) { }
 
   ngOnInit() {
   }
 
-  addFile(name: string, type: string) {
-    this.templatesService.setBaseUrl('http://localhost:9000/ui-definition');
+  selectTemplate(selectedTemplate: string) {
+    console.log('Here we need to pass the selected template to the assembly component');
   }
-
 }

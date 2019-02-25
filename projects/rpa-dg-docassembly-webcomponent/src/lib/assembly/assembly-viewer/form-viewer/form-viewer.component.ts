@@ -9,6 +9,7 @@ import { TemplatesService } from '../../shared/templates.service';
   templateUrl: './form-viewer.component.html'
 })
 export class FormViewerComponent {
+
   uiDefinition: Observable<FormlyFieldConfig[]>;
   form = new FormGroup({});
   model: any = {};
@@ -20,5 +21,4 @@ export class FormViewerComponent {
   onPreview() {
     console.log(this.model);
   }
-
 }
