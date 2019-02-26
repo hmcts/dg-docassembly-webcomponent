@@ -1,15 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { AssemblyModule } from '../../projects/rpa-dg-docassembly-webcomponent/src/lib/assembly/assembly.module';
-
-const routes: Routes = [
-  { path: '', redirectTo: '/assembly', pathMatch: 'full' },
-  { path: 'assembly', loadChildren: () => AssemblyModule }
-];
+import { AssemblyModule } from 'rpa-dg-docassembly-webcomponent';
 
 @NgModule({
   declarations: [
@@ -18,7 +13,11 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     CommonModule,
-    RouterModule.forRoot(routes)
+    AssemblyModule,
+    RouterModule.forRoot([
+      { path: '', redirectTo: '/assembly', pathMatch: 'full' },
+      { path: 'assembly', loadChildren: () => AssemblyModule }
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]

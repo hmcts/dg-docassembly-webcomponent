@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "rpa-dg-docassembly-webcomponent": [
+        "dist/rpa-dg-docassembly-webcomponent"
+      ],
+      "rpa-dg-docassembly-webcomponent/*": [
+        "dist/rpa-dg-docassembly-webcomponent/*"
+      ]
+    }
   }
 }

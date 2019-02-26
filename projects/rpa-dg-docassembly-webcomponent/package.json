@@ -1,12 +1,10 @@
 {
   "name": "rpa-dg-docassembly-webcomponent",
   "version": "0.0.3",
-  "dependencies": {
-    "@ngx-formly/core": "^4.8.2",
-    "govuk-frontend": "^2.4.0",
-    "@hmcts/annotation-ui-lib": "1.0.18"
-  },
   "peerDependencies": {
-    "jui-formly-lib": "0.0.3"
+    "@ngx-formly/core": "^4.8.2",
+    "govuk-frontend": "^2.5.1",
+    "@hmcts/annotation-ui-lib": "1.0.18",
+    "govuk-formly-templates": "^0.1.6-RC"
   }
 }
