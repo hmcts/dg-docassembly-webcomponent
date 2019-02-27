@@ -2,19 +2,21 @@
   <main class="govuk-main-wrapper">
 
     <div class="govuk-grid-row">
-      <div class="govuk-form-group">
-        <label class="govuk-label" for="sort">
-          Select a template to use for document assembly
-        </label>
-        <select class="govuk-select"
-                id="sort"
-                name="sort">
-          <option *ngFor="let template of templates" [value]="template">{{ template }}</option>
-        </select>
-        <!--<button class="govuk-button" (submit)="selectTemplate(form)">Continue</button>-->
-      </div>
-      <a routerLink="./viewer" type="submit" class="govuk-button"
-         (click)="selectTemplate('template')">Continue</a>
+      <form #form="ngForm" (ngSubmit)="selectTemplate(form)">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="sort">
+            Select a template to use for document assembly
+          </label>
+          <select class="govuk-select"
+                  id="sort"
+                  name="selectedTemplate"
+                  ngModel>
+            <option *ngFor="let template of templates" [value]="template">{{ template }}</option>
+          </select>
+        </div>
+        <button class="govuk-button"
+                type="submit">Continue</button>
+      </form>
     </div>
   </main>
 </div>

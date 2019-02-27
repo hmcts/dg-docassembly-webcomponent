@@ -1,27 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { FormlyFieldConfig } from "@ngx-formly/core";
 
 const docAssemblyApiUrl: string = 'http://localhost:9000';
-const uiDefinitionEndpoint: string = `${ docAssemblyApiUrl }/api/form-definition/templateId`;
+const uiDefinitionEndpoint: string = `${ docAssemblyApiUrl }/api/form-definition`;
 
 
 @Injectable()
 export class TemplatesService {
-  private url: string;
+
+  templateName = new BehaviorSubject<string>('');
 
   constructor(private http: HttpClient) {}
 
-  setBaseUrl(url: string) {
-    this.url = url;
-  }
-
-  getBaseUrl(): string {
-    return this.url;
-  }
-
   getUIDefinition(): Observable<FormlyFieldConfig[]> {
-    return this.http.get<any>(uiDefinitionEndpoint);
+    return this.http.get<any>(`${uiDefinitionEndpoint}/${this.templateName.getValue()}`);
   }
 }
