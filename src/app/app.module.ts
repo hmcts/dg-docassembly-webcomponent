@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, TransferState } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -19,7 +19,7 @@ import { AssemblyModule } from 'rpa-dg-docassembly-webcomponent';
       { path: 'assembly', loadChildren: () => AssemblyModule }
     ])
   ],
-  providers: [],
+  providers: [TransferState],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -10,6 +10,8 @@ import { AssemblyViewerComponent } from './assembly/assembly-viewer/assembly-vie
 import { TemplatesService } from './assembly/shared/templates.service';
 import { GovukFormlyTemplatesModule } from "govuk-formly-templates";
 import { AssemblyRoutingModule } from "./assembly-routing.module";
+import { HmctsEmViewerUiModule } from '@hmcts/annotation-ui-lib';
+
 
 
 @NgModule({
@@ -25,7 +27,8 @@ import { AssemblyRoutingModule } from "./assembly-routing.module";
     FormlyModule.forRoot(),
     GovukFormlyTemplatesModule,
     AssemblyRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    HmctsEmViewerUiModule
   ],
   providers: [TemplatesService]
 })

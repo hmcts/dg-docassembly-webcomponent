@@ -4,7 +4,7 @@
   "peerDependencies": {
     "@ngx-formly/core": "^4.8.2",
     "govuk-frontend": "^2.5.1",
-    "@hmcts/annotation-ui-lib": "1.0.18",
+    "@hmcts/annotation-ui-lib": "^1.0.19",
     "govuk-formly-templates": "^0.1.6-RC"
   }
 }
