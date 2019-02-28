@@ -1,9 +1,9 @@
 import { inject, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { TemplatesService } from './templates.service';
+import { AssemblyService } from './assembly.service';
 
-describe('TemplatesService', () => {
-  let templatesService: TemplatesService;
+describe('AssemblyService', () => {
+  let assemblyService: AssemblyService;
   let httpMock: HttpTestingController;
 
   const uiDefintion = [
@@ -22,31 +22,31 @@ describe('TemplatesService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        TemplatesService
+        AssemblyService
       ],
       imports: [
         HttpClientTestingModule
       ]
     });
 
-    templatesService = TestBed.get(TemplatesService);
+    assemblyService = TestBed.get(AssemblyService);
     httpMock = TestBed.get(HttpTestingController);
   });
 
-  it('should be created', inject([TemplatesService], (service: TemplatesService) => {
+  it('should be created', inject([AssemblyService], (service: AssemblyService) => {
     expect(service).toBeTruthy();
   }));
 
   it('should set the base url for the template', function () {
     const url = 'testUrl';
-    templatesService.setBaseUrl(url);
-    expect(templatesService.getBaseUrl()).toBe(url);
+    assemblyService.setBaseUrl(url);
+    expect(assemblyService.getBaseUrl()).toBe(url);
   });
 
   it('should set the get url for the template', function () {
     const url = 'testUrl';
-    templatesService.setBaseUrl(url);
-    const urlFromService = templatesService.getBaseUrl();
+    assemblyService.setBaseUrl(url);
+    const urlFromService = assemblyService.getBaseUrl();
     expect(urlFromService).toBe(url);
   });
 
@@ -54,8 +54,8 @@ describe('TemplatesService', () => {
     it('should fetch the ui definition from the url passed', function () {
       const url = 'http://localhost/api/templates/document.docx/uiDefinition';
 
-      templatesService.setBaseUrl(url);
-      templatesService.getUIDefinition().subscribe((response) => {
+      assemblyService.setBaseUrl(url);
+      assemblyService.getUIDefinition().subscribe((response) => {
         const responseObject = [].concat(JSON.parse(JSON.stringify(response)));
         expect(responseObject).toEqual(uiDefintion);
       });

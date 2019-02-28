@@ -2,8 +2,11 @@
 
 const express = require("express");
 const http = require("http");
+const bodyParser = require('body-parser');
+
 const app = express();
 
+app.use(bodyParser.json());
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -11,11 +14,15 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/api/template-rendition', (req, res) => {
-  res.send('document-url');
+app.post('/api/template-renditions', (req, res) => {
+  res.send({
+    formPayload: req.body.formPayload,
+    outputType: { fileExtension: ".pdf", mediaType: "application/pdf" },
+    renditionOutputLocation: 'http://localhost:4200/assets/non-dm.pdf'
+  });
 });
 
-app.get('/api/form-definition/:templateId', (req, res) => {
+app.get('/api/form-definitions/:templateId', (req, res) => {
   res.send([
     {
       'key': 'exampleInput',

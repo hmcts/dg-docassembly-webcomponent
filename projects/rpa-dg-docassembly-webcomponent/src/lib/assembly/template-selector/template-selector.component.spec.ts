@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TemplateSelectorComponent } from './template-selector.component';
-import { TemplatesService } from '../shared/templates.service';
+import { AssemblyService } from '../shared/assembly.service';
 
-class MockTemplatesService {
+class MockAssemblyService {
   setBaseUrl(baseUrl: string) {}
 }
 
@@ -11,13 +11,13 @@ describe('TemplateSelectorComponent', () => {
   let component: TemplateSelectorComponent;
   let fixture: ComponentFixture<TemplateSelectorComponent>;
 
-  const mockTemplatesService = new MockTemplatesService();
+  const mockAssemblyService = new MockAssemblyService();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TemplateSelectorComponent],
       providers: [
-        { provide: TemplatesService, useFactory: () => mockTemplatesService }
+        { provide: AssemblyService, useFactory: () => mockAssemblyService }
       ]
     })
     .compileComponents();
@@ -35,9 +35,9 @@ describe('TemplateSelectorComponent', () => {
 
   describe('addFile', () => {
     it('should set the url in the template service', function () {
-      spyOn(mockTemplatesService, 'setBaseUrl');
+      spyOn(mockAssemblyService, 'setBaseUrl');
       component.addFile('google', '.doc');
-      expect(mockTemplatesService.setBaseUrl).toHaveBeenCalledWith('http://localhost:9000/api/templates/google.doc/uiDefinition');
+      expect(mockAssemblyService.setBaseUrl).toHaveBeenCalledWith('http://localhost:9000/api/templates/google.doc/uiDefinition');
     });
   });
 });

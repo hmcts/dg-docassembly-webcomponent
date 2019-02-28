@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TemplatesService } from '../shared/templates.service';
+import { AssemblyService } from '../shared/assembly.service';
 import { FormGroup, NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 
@@ -13,11 +13,11 @@ export class TemplateSelectorComponent {
 
   form = new FormGroup({});
 
-  constructor(private templatesService: TemplatesService,
+  constructor(private assemblyService: AssemblyService,
               private router: Router) { }
 
   selectTemplate(form: NgForm) {
-    this.templatesService.templateName.next(form.value.selectedTemplate);
+    this.assemblyService.templateName.next(form.value.selectedTemplate);
     this.router.navigate(['viewer']);
   }
 }

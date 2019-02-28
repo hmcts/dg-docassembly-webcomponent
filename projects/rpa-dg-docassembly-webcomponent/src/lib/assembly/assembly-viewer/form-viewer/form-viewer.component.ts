@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { Observable } from 'rxjs';
-import { TemplatesService } from '../../shared/templates.service';
+import { AssemblyService } from '../../shared/assembly.service';
 
 @Component({
   selector: 'app-form-viewer',
@@ -12,13 +12,14 @@ export class FormViewerComponent {
 
   uiDefinition: Observable<FormlyFieldConfig[]>;
   form = new FormGroup({});
-  model: any = {};
+  documentData: any = {};
+  @Output() previewDocument = new EventEmitter();
 
-  constructor(private templatesService: TemplatesService) {
+  constructor(private templatesService: AssemblyService) {
     this.uiDefinition = this.templatesService.getUIDefinition();
   }
 
   onPreview() {
-    console.log(this.model);
+    this.previewDocument.emit(this.documentData);
   }
 }

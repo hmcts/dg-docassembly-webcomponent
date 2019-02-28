@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormViewerComponent } from './assembly/assembly-viewer/form-viewer/form-viewer.component';
 import { TemplateSelectorComponent } from './assembly/template-selector/template-selector.component';
 import { AssemblyViewerComponent } from './assembly/assembly-viewer/assembly-viewer.component';
-import { TemplatesService } from './assembly/shared/templates.service';
+import { AssemblyService } from './assembly/shared/assembly.service';
 import { GovukFormlyTemplatesModule } from "govuk-formly-templates";
 import { AssemblyRoutingModule } from "./assembly-routing.module";
 import { HmctsEmViewerUiModule } from '@hmcts/annotation-ui-lib';
@@ -30,6 +30,6 @@ import { HmctsEmViewerUiModule } from '@hmcts/annotation-ui-lib';
     HttpClientModule,
     HmctsEmViewerUiModule
   ],
-  providers: [TemplatesService]
+  providers: [AssemblyService]
 })
 export class AssemblyModule {}

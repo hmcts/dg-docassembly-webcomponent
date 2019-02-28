@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FormViewerComponent } from './form-viewer.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { TemplatesService } from '../../shared/templates.service';
+import { AssemblyService } from '../../shared/assembly.service';
 import { of } from 'rxjs';
 
 class MockTemplatesService {
@@ -34,7 +34,7 @@ describe('FormViewerComponent', () => {
       declarations: [FormViewerComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
-        { provide: TemplatesService, useFactory: () => mockTemplatesService }
+        { provide: AssemblyService, useFactory: () => mockTemplatesService }
       ]
     })
     .compileComponents();
