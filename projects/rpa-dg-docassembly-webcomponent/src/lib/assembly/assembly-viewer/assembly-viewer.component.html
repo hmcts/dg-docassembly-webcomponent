@@ -1,19 +1,27 @@
 <div class="govuk-width-container">
   <main class="govuk-main-wrapper">
     <div class="govuk-grid-row">
-      <div class="govuk-grid-column-one-third">
-        <app-form-viewer (previewDocument)="previewDocument($event)"></app-form-viewer>
-      </div>
-
       <div class="govuk-grid-column-two-thirds">
-        <app-document-viewer *ngIf="showPreview"
-                             [baseUrl]="'http://localhost:4200/api'"
-                             [annotate]="false"
-                             [url]="documentUrl | async"
-                             [isDM]="false"
-                             [contentType]="'pdf'">
-        </app-document-viewer>
+        <app-form-viewer (previewDocument)="previewDocument($event, modalTemplate)"></app-form-viewer>
       </div>
     </div>
   </main>
 </div>
+<ng-template #modalTemplate>
+  <div class="modal-header">
+    <h4 class="modal-title govuk-heading-m pull-left">Preview: {{ templateName }}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="govuk-grid-column-full">
+      <app-document-viewer [baseUrl]="'http://localhost:4200/api'"
+                           [annotate]="false"
+                           [url]="documentUrl | async"
+                           [isDM]="false"
+                           [contentType]="'pdf'">
+      </app-document-viewer>
+    </div>
+  </div>
+</ng-template>

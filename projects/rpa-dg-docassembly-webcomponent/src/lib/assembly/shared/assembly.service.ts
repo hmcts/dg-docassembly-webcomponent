@@ -17,13 +17,15 @@ export class AssemblyService {
   constructor(private http: HttpClient) {}
 
   getUIDefinition(): Observable<FormlyFieldConfig[]> {
-    return this.http.get<any>(`${uiDefinitionEndpoint}/${this.templateName.getValue()}`);
+    const encTemplateId = btoa(this.templateName.getValue());
+    return this.http.get<any>(`${uiDefinitionEndpoint}/${encTemplateId}`);
   }
 
   generateDocument(documentData: any): Observable<string> {
     const requestBody = {
       formPayload: documentData,
-      outputType: { fileExtension: ".pdf", mediaType: "application/pdf" }
+      outputType: { fileExtension: ".pdf", mediaType: "application/pdf" },
+      templateId: btoa(this.templateName.getValue())
     };
 
     return this.http.post<any>(generateDocumentEndpoint, requestBody)

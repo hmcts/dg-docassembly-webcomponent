@@ -11,6 +11,7 @@ import { AssemblyService } from './assembly/shared/assembly.service';
 import { GovukFormlyTemplatesModule } from "govuk-formly-templates";
 import { AssemblyRoutingModule } from "./assembly-routing.module";
 import { HmctsEmViewerUiModule } from '@hmcts/annotation-ui-lib';
+import { ModalModule } from "ngx-bootstrap";
 
 
 
@@ -28,7 +29,8 @@ import { HmctsEmViewerUiModule } from '@hmcts/annotation-ui-lib';
     GovukFormlyTemplatesModule,
     AssemblyRoutingModule,
     HttpClientModule,
-    HmctsEmViewerUiModule
+    HmctsEmViewerUiModule,
+    ModalModule.forRoot()
   ],
   providers: [AssemblyService]
 })
