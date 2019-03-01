@@ -14,7 +14,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "start:stubs": "node backend-stubs.js"
+    "start:stubs": "node stubs/backend-stubs.js"
   },
   "private": true,
   "dependencies": {
@@ -30,7 +30,7 @@
     "@ngx-formly/core": "^4.8.2",
     "bootstrap": "4.2.1",
     "core-js": "^2.5.4",
-    "govuk-formly-templates": "^0.1.6-RC",
+    "govuk-formly-templates": "^0.1.7",
     "govuk-frontend": "^2.5.1",
     "ngx-bootstrap": "^3.2.0",
     "rxjs": "~6.3.3",
@@ -48,6 +48,7 @@
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
+    "atob": "^2.1.2",
     "body-parser": "^1.18.3",
     "codecov": "^3.2.0",
     "codelyzer": "~4.5.0",

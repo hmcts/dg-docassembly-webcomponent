@@ -9,7 +9,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./template-selector.component.scss']
 })
 export class TemplateSelectorComponent {
-  templates: string[] = ['template 1', 'template 2', 'template 3'];
+  templates: string[] = [
+    'CV-CMC-GOR-ENG-0004-UI-Test',
+    'FL-FRM-APP-ENG-00002',
+    'FL-FRM-GOR-ENG-00007',
+    'PostponementRequestGenericTest',
+    'TB-IAC-APP-ENG-00003-Template-Tornado',
+    'TB-IAC-APP-ENG-00003-v0.2',
+    'TB-IAC-APP-ENG-00003-v0.9-TEST-TORNADO',
+    'generic-ui-definition'
+  ];
 
   form = new FormGroup({});
 
