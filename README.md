@@ -6,6 +6,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+## Run docker dependencies:
+
+```
+az acr login --name hmcts --subscription 1c4f0704-a29e-403d-b719-b90c34ef14c9
+docker-compose -f docker-compose-dependencies.yml up
+```
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
