@@ -1,7 +1,7 @@
 import { Component, TemplateRef } from '@angular/core';
-import { AssemblyService } from "../shared/assembly.service";
-import { Observable } from "rxjs";
-import { BsModalRef, BsModalService } from "ngx-bootstrap";
+import { AssemblyService } from '../shared/assembly.service';
+import { Observable } from 'rxjs';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-assembly-viewer',

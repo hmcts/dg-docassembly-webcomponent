@@ -8,10 +8,10 @@ import { FormViewerComponent } from './assembly/assembly-viewer/form-viewer/form
 import { TemplateSelectorComponent } from './assembly/template-selector/template-selector.component';
 import { AssemblyViewerComponent } from './assembly/assembly-viewer/assembly-viewer.component';
 import { AssemblyService } from './assembly/shared/assembly.service';
-import { GovukFormlyTemplatesModule } from "govuk-formly-templates";
-import { AssemblyRoutingModule } from "./assembly-routing.module";
+import { GovukFormlyTemplatesModule } from 'govuk-formly-templates';
+import { AssemblyRoutingModule } from './assembly-routing.module';
 import { HmctsEmViewerUiModule } from '@hmcts/annotation-ui-lib';
-import { ModalModule } from "ngx-bootstrap";
+import { ModalModule } from 'ngx-bootstrap';
 
 
 
