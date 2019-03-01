@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AssemblyService } from '../shared/assembly.service';
-import { FormGroup, NgForm } from "@angular/forms";
-import { Router } from "@angular/router";
+import { FormGroup, NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-template-selector',
