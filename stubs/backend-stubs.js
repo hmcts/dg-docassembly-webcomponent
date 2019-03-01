@@ -3,8 +3,7 @@
 const express = require("express");
 const http = require("http");
 const bodyParser = require('body-parser');
-const cmcUiDefinition = require('./cmc-ui-definition');
-const genericUiDefinition = require('./generic-ui-definition');
+const atob = require('atob');
 
 const app = express();
 
@@ -25,7 +24,10 @@ app.post('/api/template-renditions', (req, res) => {
 });
 
 app.get('/api/form-definitions/:templateId', (req, res) => {
-  res.send(cmcUiDefinition);
+  const templateName = atob(req.params.templateId);
+  console.log(`heres the template name ${templateName}`);
+  const uiDefinition = require(`./${templateName}`);
+  res.send(uiDefinition);
 });
 
 const port = process.env.PORT || "9000";
