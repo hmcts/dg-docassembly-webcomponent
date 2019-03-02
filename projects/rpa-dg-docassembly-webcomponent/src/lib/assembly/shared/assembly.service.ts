@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { map } from 'rxjs/operators';
 
@@ -12,20 +12,18 @@ const generateDocumentEndpoint = `${ docAssemblyApiUrl }/api/template-renditions
 @Injectable()
 export class AssemblyService {
 
-  templateName = new BehaviorSubject<string>('');
-
   constructor(private http: HttpClient) {}
 
-  getUIDefinition(): Observable<FormlyFieldConfig[]> {
-    const encTemplateId = btoa(this.templateName.getValue());
+  getUIDefinition(templateName: string): Observable<FormlyFieldConfig[]> {
+    const encTemplateId = btoa(templateName);
     return this.http.get<any>(`${uiDefinitionEndpoint}/${encTemplateId}`);
   }
 
-  generateDocument(documentData: any): Observable<string> {
+  generateDocument(templateName: string, templateData: any): Observable<string> {
     const requestBody = {
-      formPayload: documentData,
-      outputType: { fileExtension: '.pdf', mediaType: 'application/pdf' },
-      templateId: btoa(this.templateName.getValue())
+      formPayload: templateData,
+      outputType: 'PDF',
+      templateId: btoa(templateName)
     };
 
     return this.http.post<any>(generateDocumentEndpoint, requestBody)

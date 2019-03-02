@@ -9,7 +9,6 @@ import { TemplateSelectorComponent } from './assembly/template-selector/template
 import { AssemblyViewerComponent } from './assembly/assembly-viewer/assembly-viewer.component';
 import { AssemblyService } from './assembly/shared/assembly.service';
 import { GovukFormlyTemplatesModule } from 'govuk-formly-templates';
-import { AssemblyRoutingModule } from './assembly-routing.module';
 import { HmctsEmViewerUiModule } from '@hmcts/annotation-ui-lib';
 import { ModalModule } from 'ngx-bootstrap';
 
@@ -27,11 +26,11 @@ import { ModalModule } from 'ngx-bootstrap';
     ReactiveFormsModule,
     FormlyModule.forRoot(),
     GovukFormlyTemplatesModule,
-    AssemblyRoutingModule,
     HttpClientModule,
     HmctsEmViewerUiModule,
     ModalModule.forRoot()
   ],
+  exports: [AssemblyViewerComponent],
   providers: [AssemblyService]
 })
 export class AssemblyModule {}

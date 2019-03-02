@@ -15,8 +15,7 @@ import { AssemblyModule } from 'rpa-dg-docassembly-webcomponent';
     CommonModule,
     AssemblyModule,
     RouterModule.forRoot([
-      { path: '', redirectTo: '/assembly', pathMatch: 'full' },
-      { path: 'assembly', loadChildren: () => AssemblyModule }
+      { path: '', component: AppComponent }
     ])
   ],
   providers: [TransferState],

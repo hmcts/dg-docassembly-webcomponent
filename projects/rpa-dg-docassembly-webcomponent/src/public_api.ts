@@ -3,3 +3,4 @@
  */
 
 export * from './lib/assembly.module';
+export * from './lib/assembly/assembly-viewer/assembly-viewer.component';

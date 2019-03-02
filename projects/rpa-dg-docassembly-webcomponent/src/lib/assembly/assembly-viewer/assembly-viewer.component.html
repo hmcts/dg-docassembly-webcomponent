@@ -2,7 +2,12 @@
   <main class="govuk-main-wrapper">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-        <app-form-viewer (previewDocument)="previewDocument($event, modalTemplate)"></app-form-viewer>
+        <app-template-selector *ngIf="!showForm"
+                               [templates]="templates" (templateSelected)="setTemplate($event)"></app-template-selector>
+        <app-form-viewer *ngIf="showForm"
+                         [templateName]="templateName"
+                         [templateData]="templateData"
+                         (previewDocument)="previewDocument($event, modalTemplate)"></app-form-viewer>
       </div>
     </div>
   </main>

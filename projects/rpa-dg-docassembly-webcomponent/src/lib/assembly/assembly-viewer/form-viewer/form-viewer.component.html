@@ -1,7 +1,7 @@
 <div class="col-sm">
   <h2>Form preview</h2>
   <form [formGroup]="form">
-    <formly-form [model]="documentData"
+    <formly-form [model]="templateData"
                  [fields]="(uiDefinition | async) || []"
                  [form]="form">
     </formly-form>

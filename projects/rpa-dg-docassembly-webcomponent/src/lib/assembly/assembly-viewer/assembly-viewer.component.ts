@@ -1,4 +1,4 @@
-import { Component, TemplateRef } from '@angular/core';
+import { Component, Input, TemplateRef } from '@angular/core';
 import { AssemblyService } from '../shared/assembly.service';
 import { Observable } from 'rxjs';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
@@ -8,16 +8,28 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
   templateUrl: './assembly-viewer.component.html'
 })
 export class AssemblyViewerComponent {
-  documentUrl: Observable<string>;
+
   modalRef: BsModalRef;
+  showForm = false;
+
   templateName: string;
+  documentUrl: Observable<string>;
+
+  @Input() templateData: any;
+  @Input() templates: string[];
 
   constructor(private assemblyService: AssemblyService,
               private modalService: BsModalService) {}
 
-  previewDocument(documentData: any, modalTemplate: TemplateRef<any>) {
-    this.templateName = this.assemblyService.templateName.getValue();
-    this.documentUrl = this.assemblyService.generateDocument(documentData);
+  setTemplate(templateName: string) {
+    this.templateName = templateName;
+    console.log(`assembly viewer setting the template name: ${templateName}`);
+    this.showForm = true;
+  }
+
+  previewDocument(templateData: any, modalTemplate: TemplateRef<any>) {
+    this.templateData = templateData;
+    this.documentUrl = this.assemblyService.generateDocument(this.templateName, templateData);
     this.modalRef = this.modalService
       .show(
         modalTemplate,
