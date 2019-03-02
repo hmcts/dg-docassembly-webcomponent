@@ -1,10 +1,18 @@
-<div class="col-sm">
-  <h2>Form preview</h2>
-  <form [formGroup]="form">
-    <formly-form [model]="templateData"
-                 [fields]="(uiDefinition | async) || []"
-                 [form]="form">
-    </formly-form>
-  </form>
-</div>
-<button class="govuk-button" (click)="onPreview()">Preview</button>
+<main class="govuk-main-wrapper">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h2 class="govuk-heading-l">Template: {{ templateName }}</h2>
+    </div>
+    <div class="govuk-grid-column-two-thirds">
+      <div class="col-sm">
+        <form [formGroup]="form">
+          <formly-form [model]="templateData"
+                       [fields]="(uiDefinition | async) || []"
+                       [form]="form">
+          </formly-form>
+        </form>
+      </div>
+      <button class="govuk-button" (click)="onPreview()">Preview</button>
+    </div>
+  </div>
+</main>
