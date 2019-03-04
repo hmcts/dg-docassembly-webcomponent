@@ -16,6 +16,7 @@ app.use((req, res, next) => {
 });
 
 app.post('/api/template-renditions', (req, res) => {
+  console.log(`heres the template data we want to send ${JSON.stringify(req.body.formPayload)}`);
   res.send({
     formPayload: req.body.formPayload,
     outputType: { fileExtension: ".pdf", mediaType: "application/pdf" },

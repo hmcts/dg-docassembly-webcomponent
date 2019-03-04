@@ -6,6 +6,8 @@ describe('AssemblyService', () => {
   let assemblyService: AssemblyService;
   let httpMock: HttpTestingController;
 
+  const templateName = 'template-name';
+
   const uiDefintion = [
     {
       'key': 'caseReference',
@@ -37,30 +39,15 @@ describe('AssemblyService', () => {
     expect(service).toBeTruthy();
   }));
 
-  it('should set the base url for the template', function () {
-    const url = 'testUrl';
-    assemblyService.setBaseUrl(url);
-    expect(assemblyService.getBaseUrl()).toBe(url);
-  });
-
-  it('should set the get url for the template', function () {
-    const url = 'testUrl';
-    assemblyService.setBaseUrl(url);
-    const urlFromService = assemblyService.getBaseUrl();
-    expect(urlFromService).toBe(url);
-  });
-
   describe('getUIDefinition', () => {
     it('should fetch the ui definition from the url passed', function () {
-      const url = 'http://localhost/api/templates/document.docx/uiDefinition';
+      const uiDefinitionEndpoint = `api/form-definitions/${btoa(templateName)}`;
 
-      assemblyService.setBaseUrl(url);
-      assemblyService.getUIDefinition().subscribe((response) => {
-        const responseObject = [].concat(JSON.parse(JSON.stringify(response)));
-        expect(responseObject).toEqual(uiDefintion);
+      assemblyService.getUIDefinition(templateName).subscribe(resp => {
+        expect(resp).toEqual(uiDefintion);
       });
 
-      const req = httpMock.expectOne(url);
+      const req = httpMock.expectOne(uiDefinitionEndpoint);
       expect(req.request.method).toEqual('GET');
       req.flush(uiDefintion);
 

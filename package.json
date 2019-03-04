@@ -1,6 +1,6 @@
 {
   "name": "rpa-dg-docassembly-webcomponent",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -60,6 +60,7 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "^2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
+    "karma-phantomjs-launcher": "^1.0.4",
     "ng-packagr": "^4.2.0",
     "protractor": "^5.4.2",
     "ts-node": "~7.0.0",

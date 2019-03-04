@@ -1,6 +1,6 @@
 module.exports = [
   {
-    'key': 'exampleInput',
+    'key': 'domain.exampleInput',
     'type': 'input',
     'hideExpression': null,
     'templateOptions': {
