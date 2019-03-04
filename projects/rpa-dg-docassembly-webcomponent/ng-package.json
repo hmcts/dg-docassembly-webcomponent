@@ -1,0 +1,12 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/rpa-dg-docassembly-webcomponent",
+  "lib": {
+    "entryFile": "src/public_api.ts"
+  },
+  "whitelistedNonPeerDependencies": [
+    "@hmcts/annotation-ui-lib",
+    "govuk-frontend",
+    "@ngx-formly/core"
+  ]
+}
