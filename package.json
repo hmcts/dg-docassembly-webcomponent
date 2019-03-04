@@ -1,6 +1,6 @@
 {
-  "name": "rpa-dg-docassembly-demo",
-  "version": "0.0.0",
+  "name": "rpa-dg-docassembly-webcomponent",
+  "version": "0.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -23,8 +23,8 @@
     "@angular/compiler": "~7.1.0",
     "@angular/core": "~7.1.0",
     "@angular/forms": "^7.1.4",
-    "@angular/platform-browser": "~7.1.0",
-    "@angular/platform-browser-dynamic": "~7.1.0",
+    "@angular/platform-browser": "^7.2.7",
+    "@angular/platform-browser-dynamic": "^7.2.7",
     "@angular/router": "~7.1.0",
     "@hmcts/annotation-ui-lib": "^1.0.20",
     "@ngx-formly/core": "^4.8.2",
@@ -55,7 +55,7 @@
     "coveralls": "^3.0.2",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
-    "karma": "^4.0.0",
+    "karma": "^4.0.1",
     "karma-chrome-launcher": "^2.2.0",
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "^2.0.1",

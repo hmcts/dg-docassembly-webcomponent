@@ -1,0 +1,36 @@
+language: node_js
+node_js:
+- lts/*
+cache:
+  yarn: true
+  directories:
+  - node_modules
+sudo: required
+addons:
+  chrome: stable
+apt:
+  sources:
+  - google-chrome
+  packages:
+  - google-chrome-stable
+  - google-chrome-beta
+script:
+- npm --version
+- npm install
+- npm test
+- npm run package
+after_success:
+- npm run test:codecov-upload
+- npm run test:coveralls-upload
+before_deploy:
+- cd dist/rpa-dg-docassembly-webcomponent
+deploy:
+  provider: npm
+  email: jenkins-reform@hmcts.net
+  api_key:
+    secure: R9256KUj8bwQpDcZWwbsMzgnz1F30TsdfHPMUN9DefjVzRgFDXNNDN9Zi50qWG33GnJiNTDH1Vlso5l6lkqJF6c9bLQyUoZv+drLvw624gC26IG05+A2RUyhEY+Kla9+BhOtKqQBu6+DnomK22xpcCpsJayGINCgg4fhQkeiXzDMwyGFOacucyjLphrRrwBpK/WT9IJ8mM0lGE+o+uP56eS4o1MqkSlhiptggydvjGugsVxApzVR0wODpMaX8+XJhEznEgr8MqxTMdNzKtsaLPUodyjmH32LG91ZEooh/5BeBGgeN4d/2w+slgeo4rmq01kb6ZeAjiswoWI0wRC8NX4ppinovgFJiUsJloh3U7/KowtdwhOTxzOE+xbCGvjTztZDjtcj3qW/lHjKwpLxo4+NrlK3pW/zoxfJ3fBMc2EFuMhQLVUG79/3TnMQxCs1G66ITji3fcINx48wPJjJ02WYfvRnqU8pHAhjbK9J7QeOxrew0AuzflynTs08uLwv9k0BblxeXUvb/bGZuB+5XqC/JaoT0iDvahJpF/MI3Gi23zhiEA0E37rUJnXpcTiT652xDNeYVsdfJL9vH9ZLEwJp0Kf4AffMMsqHBtSoGWn0sDHnOw1lToOIRd9/2lrppqBqLo7a22Dl+kZfVdbvPmqMKSSL0vI6BGVhXdRXK8Q=
+  skip_cleanup: true
+  on:
+    tags: true
+    repo: hmcts/rpa-dg-docassembly-webcomponent
+    all_branches: true
