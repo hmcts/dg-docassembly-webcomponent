@@ -16,5 +16,8 @@ export class AppComponent {
     'TB-IAC-APP-ENG-00003-v0.9-TEST-TORNADO',
     'generic-ui-definition'
   ];
-  templateData = {};
+  templateData = {
+    exampleSelect: 'option-3',
+    exampleRadio: 'option-4'
+  };
 }

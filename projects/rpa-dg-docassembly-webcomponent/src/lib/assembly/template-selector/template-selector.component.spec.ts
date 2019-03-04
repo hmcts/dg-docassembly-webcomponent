@@ -2,9 +2,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TemplateSelectorComponent } from './template-selector.component';
 import { AssemblyService } from '../shared/assembly.service';
+import { FormsModule } from '@angular/forms';
 
 class MockAssemblyService {
-  setBaseUrl(baseUrl: string) {}
+  getUIDefinition() {}
+  generateDocument() {}
 }
 
 describe('TemplateSelectorComponent', () => {
@@ -18,7 +20,8 @@ describe('TemplateSelectorComponent', () => {
       declarations: [TemplateSelectorComponent],
       providers: [
         { provide: AssemblyService, useFactory: () => mockAssemblyService }
-      ]
+      ],
+      imports: [FormsModule]
     })
     .compileComponents();
   }));
@@ -31,13 +34,5 @@ describe('TemplateSelectorComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  describe('addFile', () => {
-    it('should set the url in the template service', function () {
-      spyOn(mockAssemblyService, 'setBaseUrl');
-      component.addFile('google', '.doc');
-      expect(mockAssemblyService.setBaseUrl).toHaveBeenCalledWith('http://localhost:9000/api/templates/google.doc/uiDefinition');
-    });
   });
 });
