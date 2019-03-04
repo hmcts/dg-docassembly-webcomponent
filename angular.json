@@ -78,7 +78,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "rpa-dg-docassembly-demo:build"
+            "browserTarget": "rpa-dg-docassembly-demo:build",
+            "proxyConfig": "proxy.conf.js"
           },
           "configurations": {
             "production": {
