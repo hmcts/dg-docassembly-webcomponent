@@ -4,9 +4,8 @@ import { Observable } from 'rxjs';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { map } from 'rxjs/operators';
 
-const docAssemblyApiUrl = 'http://localhost:9000';
-const uiDefinitionEndpoint = `${ docAssemblyApiUrl }/api/form-definitions`;
-const generateDocumentEndpoint = `${ docAssemblyApiUrl }/api/template-renditions`;
+const uiDefinitionEndpoint = `api/form-definitions`;
+const generateDocumentEndpoint = `api/template-renditions`;
 
 
 @Injectable()
