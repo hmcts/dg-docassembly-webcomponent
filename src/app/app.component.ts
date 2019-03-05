@@ -77,8 +77,8 @@ export class AppComponent {
    "hearing":{
       "date":"2019-04-15"
    },
-   "hearingDurationSelection":"1",
-   "hearingTimeSelection":"1",
+   "hearingDurationSelection":1,
+   "hearingTimeSelection":1,
    "hearingStatement1":"Some additional step to bring on the day"
 }`;
 
