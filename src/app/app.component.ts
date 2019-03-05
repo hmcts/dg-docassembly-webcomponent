@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+
 
 @Component({
   selector: 'app-root',
@@ -16,5 +17,20 @@ export class AppComponent {
     'TB-IAC-APP-ENG-00003-v0.9-TEST-TORNADO.docx',
     'generic-ui-definition.docx'
   ];
-  templateData = {};
+  templateData: string;
+  jsonParseErrors;
+
+  get templateDataJson() {
+    let jsonData = null;
+    if (this.templateData) {
+      try {
+        jsonData = JSON.parse(this.templateData);
+        this.jsonParseErrors = '';
+      } catch (e) {
+        this.jsonParseErrors = e.toString();
+      }
+    }
+    return jsonData;
+  }
+
 }

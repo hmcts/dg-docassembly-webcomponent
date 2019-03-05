@@ -1,2 +1,13 @@
+
+<p><label>Reference data:</label></p>
+
+<p><textarea style="width: 600px; height: 300px; font-size: .8em" [(ngModel)]="templateData"></textarea></p>
+
+<p>
+  {{jsonParseErrors}}
+</p>
+
+<hr>
+
 <app-assembly-viewer [templates]="templates"
-                     [templateData]="templateData"></app-assembly-viewer>
+                     [templateData]="templateDataJson"></app-assembly-viewer>
