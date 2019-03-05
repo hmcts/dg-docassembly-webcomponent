@@ -35,6 +35,7 @@ services:
       - IDAM_API_BASE_URI=http://betadevaccidamapplb.reform.hmcts.net
       - APPINSIGHTS_INSTRUMENTATIONKEY=test-key
       - DG_TEMPLATE_MANAGEMENT_API=http://rpa-dg-template-management-api:8080
+      - DM_STORE_APP_URL=http://dm-store:8080
       - DOCMOSIS_ACCESS_KEY
     links:
       - rpa-dg-template-management-api
