@@ -30,7 +30,7 @@
     "@ngx-formly/core": "^4.8.2",
     "bootstrap": "4.2.1",
     "core-js": "^2.5.4",
-    "govuk-formly-templates": "^0.1.7",
+    "govuk-formly-templates": "^0.1.10",
     "govuk-frontend": "^2.5.1",
     "ngx-bootstrap": "^3.2.0",
     "rxjs": "~6.3.3",
