@@ -1,15 +1,14 @@
-import { Component, Input, TemplateRef } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { AssemblyService } from '../shared/assembly.service';
 import { Observable } from 'rxjs';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-assembly-viewer',
-  templateUrl: './assembly-viewer.component.html'
+  templateUrl: './assembly-viewer.component.html',
+  styleUrls: ['./assembly-viewer.component.scss']
 })
 export class AssemblyViewerComponent {
 
-  modalRef: BsModalRef;
   showForm = false;
 
   templateName: string;
@@ -18,8 +17,9 @@ export class AssemblyViewerComponent {
   @Input() templateData: any;
   @Input() templates: string[];
 
-  constructor(private assemblyService: AssemblyService,
-              private modalService: BsModalService) {}
+  @ViewChild('modalTemplate') modalTemplate: ElementRef;
+
+  constructor(private assemblyService: AssemblyService) {}
 
   setTemplate(templateName: string) {
     this.templateName = templateName;
@@ -27,13 +27,13 @@ export class AssemblyViewerComponent {
     this.showForm = true;
   }
 
-  previewDocument(templateData: any, modalTemplate: TemplateRef<any>) {
+  previewDocument(templateData: any) {
     this.templateData = templateData;
     this.documentUrl = this.assemblyService.generateDocument(this.templateName, templateData);
-    this.modalRef = this.modalService
-      .show(
-        modalTemplate,
-        Object.assign({}, { class: 'modal-xl' })
-      );
+    this.modalTemplate.nativeElement.style.display = 'block';
+  }
+
+  closeModal() {
+    this.modalTemplate.nativeElement.style.display = 'none';
   }
 }
