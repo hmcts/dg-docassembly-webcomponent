@@ -5,7 +5,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { AssemblyService } from '../../shared/assembly.service';
 import { of } from 'rxjs';
 
-class MockTemplatesService {
+class MockAssemblyService {
   getUIDefinition() {
   }
 }
@@ -14,7 +14,7 @@ describe('FormViewerComponent', () => {
   let component: FormViewerComponent;
   let fixture: ComponentFixture<FormViewerComponent>;
 
-  const mockTemplatesService = new MockTemplatesService();
+  const mockAssemblyService = new MockAssemblyService();
 
   const uiDefintion = [
     {
@@ -34,7 +34,7 @@ describe('FormViewerComponent', () => {
       declarations: [FormViewerComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
-        { provide: AssemblyService, useFactory: () => mockTemplatesService }
+        { provide: AssemblyService, useFactory: () => mockAssemblyService }
       ]
     })
     .compileComponents();
@@ -43,26 +43,11 @@ describe('FormViewerComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(FormViewerComponent);
     component = fixture.componentInstance;
-    spyOn(mockTemplatesService, 'getUIDefinition').and.returnValue(of(uiDefintion));
+    spyOn(mockAssemblyService, 'getUIDefinition').and.returnValue(of(uiDefintion));
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  describe('ngOnDestroy', () => {
-    it('should unsubscribe from template service', function () {
-      spyOn(component['formFieldsSub'], 'unsubscribe');
-      expect(component['formFieldsSub'].unsubscribe).toHaveBeenCalled();
-    });
-  });
-
-  describe('onPreview', () => {
-    it('should console log input from the input fields', function () {
-      spyOn(console, 'log');
-      component.onPreview();
-      expect(console.log).toHaveBeenCalled();
-    });
   });
 });
