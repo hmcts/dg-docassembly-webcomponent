@@ -1,15 +1,9 @@
-
-<p><label>Reference data:</label></p>
-
-<p><textarea style="width: 600px; height: 300px; font-size: .8em" [(ngModel)]="templateData"></textarea></p>
-
-<p><button class="govuk-button" (click)="saveTemplateData()" type="button">Check and save template data</button></p>
-
-<p>
-  {{jsonParseErrors}}
-</p>
-
-<hr>
+<details>
+  <summary class="govuk-label">Reference data:</summary>
+  <textarea style="width: 600px; height: 300px; font-size: .8em" [(ngModel)]="templateData"></textarea>
+  <p>{{jsonParseErrors}}</p>
+</details>
+<button class="govuk-button" (click)="saveTemplateData()" type="button">Check and save template data</button>
 
 <app-assembly-viewer [templates]="templates"
                      [templateData]="templateDataJson"></app-assembly-viewer>
