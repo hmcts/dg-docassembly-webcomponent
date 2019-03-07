@@ -6,7 +6,10 @@
   },
   "whitelistedNonPeerDependencies": [
     "@hmcts/annotation-ui-lib",
+    "govuk-formly-templates",
     "govuk-frontend",
-    "@ngx-formly/core"
+    "@ngx-formly/core",
+    "bootstrap",
+    "ngx-bootstrap"
   ]
 }

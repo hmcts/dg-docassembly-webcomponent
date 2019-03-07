@@ -5,23 +5,23 @@
   <app-form-viewer *ngIf="showForm"
                    [templateName]="templateName"
                    [templateData]="templateData"
-                   (previewDocument)="previewDocument($event, modalTemplate)"></app-form-viewer>
+                   (previewDocument)="previewDocument($event)"></app-form-viewer>
 </div>
-<ng-template #modalTemplate>
-  <div class="modal-header">
-    <h4 class="modal-title govuk-heading-m pull-left">Preview: {{ templateName }}</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
+  <div #modalTemplate class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h2 class="modal-title pull-left">Preview: {{ templateName }}</h2>
+        </div>
+        <div class="modal-body">
+            <app-document-viewer [baseUrl]="''"
+                                 [annotate]="false"
+                                 [url]="documentUrl | async"
+                                 [isDM]="false"
+                                 [contentType]="'pdf'">
+            </app-document-viewer>
+        </div>
+      </div>
   </div>
-  <div class="modal-body">
-    <div class="govuk-grid-column-full">
-      <app-document-viewer [baseUrl]="''"
-                           [annotate]="false"
-                           [url]="documentUrl | async"
-                           [isDM]="true"
-                           [contentType]="'pdf'">
-      </app-document-viewer>
-    </div>
-  </div>
-</ng-template>

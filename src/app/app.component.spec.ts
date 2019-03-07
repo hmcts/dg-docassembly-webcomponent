@@ -4,13 +4,12 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TemplateSelectorComponent } from '../../projects/rpa-dg-docassembly-webcomponent/src/lib/assembly/template-selector/template-selector.component';
 import { AssemblyViewerComponent } from '../../projects/rpa-dg-docassembly-webcomponent/src/lib/assembly/assembly-viewer/assembly-viewer.component';
 import { FormViewerComponent } from '../../projects/rpa-dg-docassembly-webcomponent/src/lib/assembly/assembly-viewer/form-viewer/form-viewer.component';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, TransferState } from '@angular/platform-browser';
 import { HmctsEmViewerUiModule } from '@hmcts/annotation-ui-lib';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { AssemblyService } from '../../projects/rpa-dg-docassembly-webcomponent/src/lib/assembly/shared/assembly.service';
-import { BsModalService, ComponentLoaderFactory, ModalModule } from 'ngx-bootstrap';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -29,9 +28,8 @@ describe('AppComponent', () => {
         ReactiveFormsModule,
         RouterTestingModule,
         HmctsEmViewerUiModule,
-        ModalModule.forRoot()
       ],
-      providers: [AssemblyService, BsModalService, ComponentLoaderFactory]
+      providers: [AssemblyService, TransferState]
     }).compileComponents();
   }));
 
