@@ -24,11 +24,11 @@
       "@hmcts/dg-docassembly-webcomponent/*": [
         "dist/dg-docassembly-webcomponent/*"
       ],
-      "@hmcts/annotation-ui-lib": [
-        "projects/dg-docassembly-webcomponent/node_modules/@hmcts/annotation-ui-lib"
+      "@hmcts/document-viewer-webcomponent": [
+        "projects/dg-docassembly-webcomponent/node_modules/@hmcts/document-viewer-webcomponent"
       ],
-      "@hmcts/annotation-ui-lib/*": [
-        "projects/dg-docassembly-webcomponent/node_modules/@hmcts/annotation-ui-lib/*"
+      "@hmcts/document-viewer-webcomponent/*": [
+        "projects/dg-docassembly-webcomponent/node_modules/@hmcts/document-viewer-webcomponent/*"
       ],
       "@hmcts/govuk-formly-templates": [
         "projects/dg-docassembly-webcomponent/node_modules/@hmcts/govuk-formly-templates"

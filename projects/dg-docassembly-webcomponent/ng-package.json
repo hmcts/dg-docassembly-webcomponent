@@ -6,7 +6,7 @@
     "entryFile": "src/public_api.ts"
   },
   "whitelistedNonPeerDependencies": [
-    "@hmcts/annotation-ui-lib",
+    "@hmcts/document-viewer-webcomponent",
     "@hmcts/govuk-formly-templates",
     "govuk-frontend",
     "@ngx-formly/core"

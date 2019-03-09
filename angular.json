@@ -26,24 +26,18 @@
               "src/favicon.ico",
               "src/assets",
               {
-                "glob": "**/**/*",
-                "input": "node_modules/govuk-frontend/assets",
-                "output": "/assets/"
-              },
-              {
-                "glob": "**/*",
-                "input": "projects/dg-docassembly-webcomponent/node_modules/@hmcts/annotation-ui-lib/assets",
+                "glob": "**/**/**/**/**/*",
+                "input": "projects/dg-docassembly-webcomponent/node_modules/@hmcts/document-viewer-webcomponent/assets",
                 "output": "/assets"
               }
             ],
             "styles": [
-              "src/styles.scss",
-              "projects/dg-docassembly-webcomponent/node_modules/@hmcts/annotation-ui-lib/assets/aui-styles.scss"
+              "projects/dg-docassembly-webcomponent/node_modules/@hmcts/document-viewer-webcomponent/assets/aui-styles.scss"
             ],
             "scripts": [
-              "projects/dg-docassembly-webcomponent/node_modules/@hmcts/annotation-ui-lib/assets/js/pdf.combined.min.js",
-              "projects/dg-docassembly-webcomponent/node_modules/@hmcts/annotation-ui-lib/assets/js/pdf_viewer.min.js",
-              "projects/dg-docassembly-webcomponent/node_modules/@hmcts/annotation-ui-lib/assets/js/pdf-annotate.min.js"
+              "projects/dg-docassembly-webcomponent/node_modules/@hmcts/document-viewer-webcomponent/assets/js/pdf.combined.min.js",
+              "projects/dg-docassembly-webcomponent/node_modules/@hmcts/document-viewer-webcomponent/assets/js/pdf_viewer.min.js",
+              "projects/dg-docassembly-webcomponent/node_modules/@hmcts/document-viewer-webcomponent/assets/js/pdf-annotate.min.js"
             ]
           },
           "configurations": {

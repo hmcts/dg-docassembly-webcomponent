@@ -16,12 +16,30 @@
           <h2 class="modal-title pull-left">Preview: {{ templateName }}</h2>
         </div>
         <div class="modal-body">
-            <app-document-viewer [baseUrl]="''"
-                                 [annotate]="false"
-                                 [url]="documentUrl | async"
-                                 [isDM]="false"
-                                 [contentType]="'pdf'">
-            </app-document-viewer>
+          <div class="aui__window">
+
+            <div class="aui__window-container">
+
+              <div class="aui__document">
+                <div class="aui__document-pages">
+                  <div class="aui__document-page">
+                    <div class="aui-casefile-document-wrapper">
+                      <div class="aui-casefile-page editable medium-editor-element" data-medium-editor-element="true"
+                           role="textbox"
+                           aria-multiline="true" data-medium-editor-editor-index="1"
+                           medium-editor-index="ca3cfb8f-8b6a-8f73-1ed5-fa7679703446" data-placeholder="Type your text">
+                        <app-document-viewer [url]="documentUrl | async"
+                                             [isDM]="false"
+                                             [contentType]="'pdf'">
+                        </app-document-viewer>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
       </div>
   </div>

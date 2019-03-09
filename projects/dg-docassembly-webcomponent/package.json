@@ -2,7 +2,7 @@
   "name": "@hmcts/dg-docassembly-webcomponent",
   "version": "0.1.6",
   "dependencies": {
-    "@hmcts/annotation-ui-lib": "^1.0.19",
+    "@hmcts/document-viewer-webcomponent": "^1.1.2",
     "@ngx-formly/core": "^4.8.2",
     "@hmcts/govuk-formly-templates": "^0.1.14",
     "govuk-frontend": "^2.5.1"

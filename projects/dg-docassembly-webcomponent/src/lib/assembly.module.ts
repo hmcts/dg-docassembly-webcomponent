@@ -4,7 +4,7 @@ import { TemplateSelectorComponent } from './assembly/template-selector/template
 import { AssemblyViewerComponent } from './assembly/assembly-viewer/assembly-viewer.component';
 import { AssemblyService } from './assembly/shared/assembly.service';
 import { GovukFormlyTemplatesModule } from '@hmcts/govuk-formly-templates';
-import { HmctsEmViewerUiModule } from '@hmcts/annotation-ui-lib';
+import { DocumentViewerModule } from '@hmcts/document-viewer-webcomponent';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
@@ -26,7 +26,7 @@ import { NgModule } from '@angular/core';
     FormlyModule.forRoot(),
     GovukFormlyTemplatesModule,
     HttpClientModule,
-    HmctsEmViewerUiModule
+    DocumentViewerModule
   ],
   exports: [AssemblyViewerComponent],
   providers: [AssemblyService]

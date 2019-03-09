@@ -5,7 +5,7 @@ import { TemplateSelectorComponent } from '../../projects/dg-docassembly-webcomp
 import { AssemblyViewerComponent } from '../../projects/dg-docassembly-webcomponent/src/lib/assembly/assembly-viewer/assembly-viewer.component';
 import { FormViewerComponent } from '../../projects/dg-docassembly-webcomponent/src/lib/assembly/assembly-viewer/form-viewer/form-viewer.component';
 import { BrowserModule, TransferState } from '@angular/platform-browser';
-import { HmctsEmViewerUiModule } from '@hmcts/annotation-ui-lib';
+import { DocumentViewerModule } from '@hmcts/document-viewer-webcomponent';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
@@ -27,7 +27,7 @@ describe('AppComponent', () => {
         FormlyModule,
         ReactiveFormsModule,
         RouterTestingModule,
-        HmctsEmViewerUiModule,
+        DocumentViewerModule,
       ],
       providers: [AssemblyService, TransferState]
     }).compileComponents();
