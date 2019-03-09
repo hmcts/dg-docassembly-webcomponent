@@ -7,7 +7,7 @@
 
 # dependencies
 /node_modules
-/projects/rpa-dg-docassembly-webcomponent/node_modules
+/projects/dg-docassembly-webcomponent/node_modules
 
 # profiling files
 chrome-profiler-events.json

@@ -9,21 +9,38 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "importHelpers": true,
     "target": "es5",
     "typeRoots": [
       "node_modules/@types"
     ],
     "lib": [
-      "es2018",
+      "es2017",
       "dom"
     ],
     "paths": {
-      "rpa-dg-docassembly-webcomponent": [
-        "dist/rpa-dg-docassembly-webcomponent"
+      "@hmcts/dg-docassembly-webcomponent": [
+        "dist/dg-docassembly-webcomponent"
       ],
-      "rpa-dg-docassembly-webcomponent/*": [
-        "dist/rpa-dg-docassembly-webcomponent/*"
+      "@hmcts/dg-docassembly-webcomponent/*": [
+        "dist/dg-docassembly-webcomponent/*"
+      ],
+      "@hmcts/annotation-ui-lib": [
+        "projects/dg-docassembly-webcomponent/node_modules/@hmcts/annotation-ui-lib"
+      ],
+      "@hmcts/annotation-ui-lib/*": [
+        "projects/dg-docassembly-webcomponent/node_modules/@hmcts/annotation-ui-lib/*"
+      ],
+      "@hmcts/govuk-formly-templates": [
+        "projects/dg-docassembly-webcomponent/node_modules/@hmcts/govuk-formly-templates"
+      ],
+      "@hmcts/govuk-formly-templates/*": [
+        "projects/dg-docassembly-webcomponent/node_modules/@hmcts/govuk-formly-templates/*"
+      ],
+      "@ngx-formly/core": [
+        "projects/dg-docassembly-webcomponent/node_modules/@ngx-formly/core"
+      ],
+      "@ngx-formly/core/*": [
+        "projects/dg-docassembly-webcomponent/node_modules/@ngx-formly/core/*"
       ]
     }
   }

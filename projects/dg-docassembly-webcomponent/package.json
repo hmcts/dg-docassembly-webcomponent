@@ -4,7 +4,7 @@
   "dependencies": {
     "@hmcts/annotation-ui-lib": "^1.0.19",
     "@ngx-formly/core": "^4.8.2",
-    "govuk-formly-templates": "^0.1.7",
+    "@hmcts/govuk-formly-templates": "^0.1.14",
     "govuk-frontend": "^2.5.1"
   },
   "publishConfig": {

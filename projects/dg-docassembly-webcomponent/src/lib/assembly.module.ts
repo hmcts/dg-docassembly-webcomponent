@@ -3,7 +3,7 @@ import { FormViewerComponent } from './assembly/assembly-viewer/form-viewer/form
 import { TemplateSelectorComponent } from './assembly/template-selector/template-selector.component';
 import { AssemblyViewerComponent } from './assembly/assembly-viewer/assembly-viewer.component';
 import { AssemblyService } from './assembly/shared/assembly.service';
-import { GovukFormlyTemplatesModule } from 'govuk-formly-templates';
+import { GovukFormlyTemplatesModule } from '@hmcts/govuk-formly-templates';
 import { HmctsEmViewerUiModule } from '@hmcts/annotation-ui-lib';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';

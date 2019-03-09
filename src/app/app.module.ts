@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { AssemblyModule } from 'rpa-dg-docassembly-webcomponent';
+import { AssemblyModule } from '@hmcts/dg-docassembly-webcomponent';
 
 @NgModule({
   declarations: [

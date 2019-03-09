@@ -23,7 +23,7 @@ after_success:
 - npm run test:codecov-upload
 - npm run test:coveralls-upload
 before_deploy:
-- cd dist/rpa-dg-docassembly-webcomponent
+- cd dist/dg-docassembly-webcomponent
 deploy:
   provider: npm
   email: jenkins-reform@hmcts.net
@@ -32,5 +32,5 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
-    repo: hmcts/rpa-dg-docassembly-webcomponent
+    repo: hmcts/dg-docassembly-webcomponent
     all_branches: true

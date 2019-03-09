@@ -1,15 +1,14 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/rpa-dg-docassembly-webcomponent",
+  "dest": "../../dist/dg-docassembly-webcomponent",
+  "deleteDestPath": false,
   "lib": {
     "entryFile": "src/public_api.ts"
   },
   "whitelistedNonPeerDependencies": [
     "@hmcts/annotation-ui-lib",
-    "govuk-formly-templates",
+    "@hmcts/govuk-formly-templates",
     "govuk-frontend",
-    "@ngx-formly/core",
-    "bootstrap",
-    "ngx-bootstrap"
+    "@ngx-formly/core"
   ]
 }
