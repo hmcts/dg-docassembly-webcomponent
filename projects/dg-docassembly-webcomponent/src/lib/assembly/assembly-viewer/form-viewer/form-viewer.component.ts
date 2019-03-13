@@ -12,12 +12,12 @@ export class FormViewerComponent implements OnInit {
 
   uiDefinition: Observable<FormlyFieldConfig[]>;
   form = new FormGroup({});
-  outputFormat: string;
+  outputFormat = 'PDF';
   documentUrl: string;
 
   @Input() templateName: string;
   @Input() templateData: any;
-  @Input() outputFormats: any;
+  @Input() outputFormats: string[];
   @Output() previewDocument = new EventEmitter();
   @Input() reusePreviewDocument : boolean;
 
@@ -39,7 +39,11 @@ export class FormViewerComponent implements OnInit {
         if (this.reusePreviewDocument) {
           this.documentUrl = documentUrl;
         }
-        this.previewDocument.emit({ templateData: this.templateData, documentUrl: this.documentUrl });
+        this.previewDocument.emit({
+          templateData: this.templateData,
+          documentUrl: this.documentUrl,
+          outputFormat: this.outputFormat
+        });
       });
   }
 }

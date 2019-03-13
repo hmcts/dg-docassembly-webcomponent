@@ -7,7 +7,7 @@ import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 })
 export class AssemblyViewerComponent {
 
-  outputFormat = 'PDF';
+  outputFormat: string;
   documentUrl: string;
 
   @Input() outputFormats = [];
@@ -19,9 +19,10 @@ export class AssemblyViewerComponent {
 
   constructor() {}
 
-  previewDocument({ templateData, documentUrl }) {
+  previewDocument({ templateData, documentUrl, outputFormat }) {
     this.templateData = templateData;
     this.documentUrl = documentUrl;
+    this.outputFormat = outputFormat
   }
 
   showModal() {
