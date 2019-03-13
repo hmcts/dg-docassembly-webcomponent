@@ -13,10 +13,13 @@ export class FormViewerComponent implements OnInit {
   uiDefinition: Observable<FormlyFieldConfig[]>;
   form = new FormGroup({});
   outputFormat: string;
+  documentUrl: string;
+
   @Input() templateName: string;
   @Input() templateData: any;
   @Input() outputFormats: any;
   @Output() previewDocument = new EventEmitter();
+  @Input() reusePreviewDocument : boolean;
 
   constructor(private assemblyService: AssemblyService) {}
 
@@ -30,7 +33,13 @@ export class FormViewerComponent implements OnInit {
   }
 
   onPreview() {
-    const documentUrl = this.assemblyService.generateDocument(this.outputFormat, this.templateName, this.templateData);
-    this.previewDocument.emit({ templateData: this.templateData, documentUrl });
+    this.assemblyService
+      .generateDocument(this.outputFormat, this.templateName, this.templateData, this.documentUrl)
+      .subscribe(documentUrl => {
+        if (this.reusePreviewDocument) {
+          this.documentUrl = documentUrl;
+        }
+        this.previewDocument.emit({ templateData: this.templateData, documentUrl: this.documentUrl });
+      });
   }
 }

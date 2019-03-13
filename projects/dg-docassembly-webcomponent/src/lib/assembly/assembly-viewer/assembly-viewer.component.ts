@@ -1,5 +1,4 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-assembly-viewer',
@@ -8,12 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class AssemblyViewerComponent {
 
-  outputFormat = 'pdf';
-  documentUrl: Observable<string>;
+  outputFormat = 'PDF';
+  documentUrl: string;
 
   @Input() outputFormats = [];
   @Input() templateName: string;
   @Input() templateData: any;
+  @Input() reusePreviewDocument = true;
 
   @ViewChild('modalTemplate') modalTemplate: ElementRef;
 

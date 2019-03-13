@@ -18,11 +18,12 @@ export class AssemblyService {
     return this.http.get<any>(`${uiDefinitionEndpoint}/${encTemplateId}`);
   }
 
-  generateDocument(outputFormat: string, templateName: string, templateData: any): Observable<string> {
+  generateDocument(outputFormat: string, templateName: string, templateData: any, documentUrl: string): Observable<string> {
     const requestBody = {
       formPayload: templateData,
-      outputType: outputFormat,
-      templateId: btoa(templateName)
+      outputType: outputFormat.toLowerCase(),
+      templateId: btoa(templateName),
+      renditionOutputLocation: documentUrl
     };
 
     return this.http.post<any>(generateDocumentEndpoint, requestBody)

@@ -2,6 +2,7 @@
   <app-form-viewer [templateName]="templateName"
                    [templateData]="templateData"
                    [outputFormats]="outputFormats"
+                   [reusePreviewDocument]="reusePreviewDocument"
                    (previewDocument)="[previewDocument($event), showModal()]"></app-form-viewer>
 </div>
   <div #modalTemplate class="modal">
@@ -22,10 +23,10 @@
                   <div class="aui__document-page">
                     <div class="aui-casefile-document-wrapper">
                       <div class="aui-casefile-page">
-                        <app-document-viewer *ngIf="(documentUrl | async)?.length > 0"
-                                             [url]="documentUrl | async"
+                        <app-document-viewer *ngIf="documentUrl?.length > 0"
+                                             [url]="documentUrl"
                                              [isDM]="false"
-                                             [contentType]="outputFormat">
+                                             [contentType]="outputFormat | lowercase">
                         </app-document-viewer>
                       </div>
                     </div>
