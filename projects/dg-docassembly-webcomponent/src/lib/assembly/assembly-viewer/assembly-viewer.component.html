@@ -1,11 +1,8 @@
 <div class="govuk-width-container">
-  <a *ngIf="showForm" href="#" class="govuk-back-link" (click)="showForm = false">Choose another template</a>
-  <app-template-selector *ngIf="!showForm"
-                         [templates]="templates" (templateSelected)="setTemplate($event)"></app-template-selector>
-  <app-form-viewer *ngIf="showForm"
-                   [templateName]="templateName"
+  <app-form-viewer [templateName]="templateName"
                    [templateData]="templateData"
-                   (previewDocument)="previewDocument($event)"></app-form-viewer>
+                   [outputFormats]="outputFormats"
+                   (previewDocument)="[previewDocument($event), showModal()]"></app-form-viewer>
 </div>
   <div #modalTemplate class="modal">
       <div class="modal-content">
@@ -24,13 +21,11 @@
                 <div class="aui__document-pages">
                   <div class="aui__document-page">
                     <div class="aui-casefile-document-wrapper">
-                      <div class="aui-casefile-page editable medium-editor-element" data-medium-editor-element="true"
-                           role="textbox"
-                           aria-multiline="true" data-medium-editor-editor-index="1"
-                           medium-editor-index="ca3cfb8f-8b6a-8f73-1ed5-fa7679703446" data-placeholder="Type your text">
-                        <app-document-viewer [url]="documentUrl | async"
+                      <div class="aui-casefile-page">
+                        <app-document-viewer *ngIf="(documentUrl | async)?.length > 0"
+                                             [url]="documentUrl | async"
                                              [isDM]="false"
-                                             [contentType]="'pdf'">
+                                             [contentType]="outputFormat">
                         </app-document-viewer>
                       </div>
                     </div>

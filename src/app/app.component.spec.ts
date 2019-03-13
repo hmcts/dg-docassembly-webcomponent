@@ -1,7 +1,7 @@
 import { async, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { TemplateSelectorComponent } from '../../projects/dg-docassembly-webcomponent/src/lib/assembly/template-selector/template-selector.component';
+import { FormatSelectorComponent } from '../../projects/dg-docassembly-webcomponent/src/lib/assembly/assembly-viewer/form-viewer/format-selector/format-selector.component';
 import { AssemblyViewerComponent } from '../../projects/dg-docassembly-webcomponent/src/lib/assembly/assembly-viewer/assembly-viewer.component';
 import { FormViewerComponent } from '../../projects/dg-docassembly-webcomponent/src/lib/assembly/assembly-viewer/form-viewer/form-viewer.component';
 import { BrowserModule, TransferState } from '@angular/platform-browser';
@@ -17,7 +17,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         AssemblyViewerComponent,
-        TemplateSelectorComponent,
+        FormatSelectorComponent,
         FormViewerComponent
       ],
       imports: [

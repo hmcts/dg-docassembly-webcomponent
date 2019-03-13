@@ -1,6 +1,6 @@
 
 import { FormViewerComponent } from './assembly/assembly-viewer/form-viewer/form-viewer.component';
-import { TemplateSelectorComponent } from './assembly/template-selector/template-selector.component';
+import { FormatSelectorComponent } from './assembly/assembly-viewer/form-viewer/format-selector/format-selector.component';
 import { AssemblyViewerComponent } from './assembly/assembly-viewer/assembly-viewer.component';
 import { AssemblyService } from './assembly/shared/assembly.service';
 import { GovukFormlyTemplatesModule } from '@hmcts/govuk-formly-templates';
@@ -17,7 +17,7 @@ import { NgModule } from '@angular/core';
   declarations: [
     AssemblyViewerComponent,
     FormViewerComponent,
-    TemplateSelectorComponent
+    FormatSelectorComponent
   ],
   imports: [
     CommonModule,

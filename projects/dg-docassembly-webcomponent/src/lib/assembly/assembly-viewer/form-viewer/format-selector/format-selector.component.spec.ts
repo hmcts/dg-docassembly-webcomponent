@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TemplateSelectorComponent } from './template-selector.component';
-import { AssemblyService } from '../shared/assembly.service';
+import { FormatSelectorComponent } from './format-selector.component';
+import { AssemblyService } from '../../../shared/assembly.service';
 import { FormsModule } from '@angular/forms';
 
 class MockAssemblyService {
@@ -9,15 +9,15 @@ class MockAssemblyService {
   generateDocument() {}
 }
 
-describe('TemplateSelectorComponent', () => {
-  let component: TemplateSelectorComponent;
-  let fixture: ComponentFixture<TemplateSelectorComponent>;
+describe('FormatSelectorComponent', () => {
+  let component: FormatSelectorComponent;
+  let fixture: ComponentFixture<FormatSelectorComponent>;
 
   const mockAssemblyService = new MockAssemblyService();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TemplateSelectorComponent],
+      declarations: [FormatSelectorComponent],
       providers: [
         { provide: AssemblyService, useFactory: () => mockAssemblyService }
       ],
@@ -27,7 +27,7 @@ describe('TemplateSelectorComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TemplateSelectorComponent);
+    fixture = TestBed.createComponent(FormatSelectorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

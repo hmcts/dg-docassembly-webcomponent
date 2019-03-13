@@ -1,0 +1,15 @@
+<form #form="ngForm">
+  <div class="govuk-form-group">
+    <label class="govuk-label" for="sort">
+      Select document format
+    </label>
+    <select (click)="selectOutputFormat(form.value.outputFormat)"
+            class="govuk-select"
+            id="sort"
+            name="outputFormat"
+            ngModel>
+      <option *ngFor="let outputFormat of outputFormats" [value]="outputFormat">{{ outputFormat }}</option>
+    </select>
+  </div>
+</form>
+

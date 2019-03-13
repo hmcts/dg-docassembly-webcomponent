@@ -18,10 +18,10 @@ export class AssemblyService {
     return this.http.get<any>(`${uiDefinitionEndpoint}/${encTemplateId}`);
   }
 
-  generateDocument(templateName: string, templateData: any): Observable<string> {
+  generateDocument(outputFormat: string, templateName: string, templateData: any): Observable<string> {
     const requestBody = {
       formPayload: templateData,
-      outputType: 'PDF',
+      outputType: outputFormat,
       templateId: btoa(templateName)
     };
 
