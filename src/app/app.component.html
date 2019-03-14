@@ -4,6 +4,7 @@
   <p>{{jsonParseErrors}}</p>
 </details>
 <button class="govuk-button" (click)="saveTemplateData()" type="button">Check and save template data</button>
-
-<app-assembly-viewer [templateName]="'CV-CMC-GOR-ENG-0004-UI-Test.docx'"
+<app-template-selector [templates]="templates" (selectedTemplate)="setTemplateName($event)"></app-template-selector>
+<app-assembly-viewer *ngIf="selectedTemplate"
+                     [templateName]="selectedTemplate"
                      [templateData]="templateDataJson"></app-assembly-viewer>

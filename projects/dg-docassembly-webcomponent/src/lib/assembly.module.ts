@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { TemplateSelectorComponent } from './assembly/template-selector/template-selector.component';
 
 
 
@@ -17,7 +18,8 @@ import { NgModule } from '@angular/core';
   declarations: [
     AssemblyViewerComponent,
     FormViewerComponent,
-    FormatSelectorComponent
+    FormatSelectorComponent,
+    TemplateSelectorComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,12 @@ import { NgModule } from '@angular/core';
     HttpClientModule,
     DocumentViewerModule
   ],
-  exports: [AssemblyViewerComponent],
+  exports: [
+    AssemblyViewerComponent,
+    FormViewerComponent,
+    TemplateSelectorComponent,
+    DocumentViewerModule
+  ],
   providers: [AssemblyService]
 })
 export class AssemblyModule {}

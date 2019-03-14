@@ -38,3 +38,5 @@ const server = http.createServer(app);
 app.set("port", port);
 
 server.listen(port);
+
+console.log(`listening on port ${port}`);
