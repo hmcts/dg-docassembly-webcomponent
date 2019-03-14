@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { templateData, templates } from './template-data';
+import { templateDataString, templates } from './template-info';
 
 @Component({
   selector: 'app-root',
@@ -8,28 +8,38 @@ import { templateData, templates } from './template-data';
 })
 export class AppComponent {
   templates = templates;
-  templateData = templateData;
+  templateDataString = templateDataString;
+  templateData: {};
   selectedTemplate: string;
+  documentUrl: string;
+  outputFormat: string;
+
+  setup = 'integrated';
 
   jsonParseErrors;
-
-  templateDataJson = {};
 
   setTemplateName(templateName: string) {
     this.selectedTemplate = templateName;
   }
 
-  saveTemplateData() {
-    let jsonData = {};
-    if (this.templateData) {
-      try {
-        jsonData = JSON.parse(this.templateData);
-        this.jsonParseErrors = '';
-      } catch (e) {
-        this.jsonParseErrors = e.toString();
-      }
-    }
-    this.templateDataJson = jsonData;
+  getPreviewData({ outputFormat, documentUrl, templateData }) {
+    this.documentUrl = documentUrl;
+    this.outputFormat = outputFormat;
+    this.templateData = templateData
   }
 
+  toggleSelection(selectedSetup: string) {
+    this.setup = selectedSetup;
+  }
+
+  saveTemplateData() {
+    if (this.templateDataString) {
+      try {
+        this.templateData = JSON.parse(this.templateDataString);
+        this.jsonParseErrors = '';
+      } catch (error) {
+        this.jsonParseErrors = error.toString();
+      }
+    }
+  }
 }

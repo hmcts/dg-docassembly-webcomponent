@@ -9,7 +9,7 @@ export const templates = [
   'generic-ui-definition.docx'
 ];
 
-export const templateData = `{
+export const templateDataString = `{
    "rowNum":"0",
    "displayComments":"false",
    "displaycode":"0",

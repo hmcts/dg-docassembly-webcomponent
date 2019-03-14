@@ -19,7 +19,7 @@ export class FormViewerComponent implements OnInit {
   @Input() templateData: any;
   @Input() outputFormats: string[];
   @Output() previewDocument = new EventEmitter();
-  @Input() reusePreviewDocument : boolean;
+  @Input() reusePreviewDocument = true;
 
   constructor(private assemblyService: AssemblyService) {}
 
