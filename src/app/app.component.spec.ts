@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { AssemblyService } from '../../projects/dg-docassembly-webcomponent/src/lib/assembly/shared/assembly.service';
+import { TemplateSelectorComponent } from '../../projects/dg-docassembly-webcomponent/src/lib/template-selector/template-selector.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -18,7 +19,8 @@ describe('AppComponent', () => {
         AppComponent,
         AssemblyViewerComponent,
         FormatSelectorComponent,
-        FormViewerComponent
+        FormViewerComponent,
+        TemplateSelectorComponent
       ],
       imports: [
         BrowserModule,

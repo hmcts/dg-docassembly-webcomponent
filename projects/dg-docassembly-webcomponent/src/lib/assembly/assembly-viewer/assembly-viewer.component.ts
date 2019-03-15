@@ -1,4 +1,9 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  ViewChild
+} from '@angular/core';
 
 @Component({
   selector: 'app-assembly-viewer',
@@ -22,7 +27,7 @@ export class AssemblyViewerComponent {
   previewDocument({ templateData, documentUrl, outputFormat }) {
     this.templateData = templateData;
     this.documentUrl = documentUrl;
-    this.outputFormat = outputFormat
+    this.outputFormat = outputFormat;
   }
 
   showModal() {

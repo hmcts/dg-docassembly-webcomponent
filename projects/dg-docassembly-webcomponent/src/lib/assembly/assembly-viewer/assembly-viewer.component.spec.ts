@@ -1,21 +1,23 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormViewerComponent } from './form-viewer.component';
-import { AssemblyService } from '../../shared/assembly.service';
 import { of } from 'rxjs';
-import { FormatSelectorComponent } from './format-selector/format-selector.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { CommonModule } from '@angular/common';
 import { GovukFormlyTemplatesModule } from '@hmcts/govuk-formly-templates';
+import { AssemblyViewerComponent } from './assembly-viewer.component';
+import { FormViewerComponent } from './form-viewer/form-viewer.component';
+import { FormatSelectorComponent } from './form-viewer/format-selector/format-selector.component';
+import { AssemblyService } from '../shared/assembly.service';
+import { DocumentViewerModule } from '@hmcts/document-viewer-webcomponent';
 
 class MockAssemblyService {
   getUIDefinition() {}
 }
 
-describe('FormViewerComponent', () => {
-  let component: FormViewerComponent;
-  let fixture: ComponentFixture<FormViewerComponent>;
+describe('AssemblyViewerComponent', () => {
+  let component: AssemblyViewerComponent;
+  let fixture: ComponentFixture<AssemblyViewerComponent>;
 
   const mockAssemblyService = new MockAssemblyService();
 
@@ -34,23 +36,28 @@ describe('FormViewerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [FormViewerComponent, FormatSelectorComponent],
+      declarations: [
+        AssemblyViewerComponent,
+        FormViewerComponent,
+        FormatSelectorComponent
+      ],
       imports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
         FormlyModule,
-        GovukFormlyTemplatesModule
+        GovukFormlyTemplatesModule,
+        DocumentViewerModule
       ],
       providers: [
         { provide: AssemblyService, useFactory: () => mockAssemblyService }
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormViewerComponent);
+    fixture = TestBed.createComponent(AssemblyViewerComponent);
     component = fixture.componentInstance;
     component.outputFormats = ['PDF'];
     spyOn(mockAssemblyService, 'getUIDefinition').and.returnValue(of(uiDefintion));
