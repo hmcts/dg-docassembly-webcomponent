@@ -11,6 +11,7 @@ import { FormlyModule } from '@ngx-formly/core';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { TemplateSelectorComponent } from './template-selector/template-selector.component';
+import { FormErrorComponent } from './assembly/assembly-viewer/form-viewer/form-error.component';
 
 
 
@@ -19,6 +20,7 @@ import { TemplateSelectorComponent } from './template-selector/template-selector
     AssemblyViewerComponent,
     FormViewerComponent,
     FormatSelectorComponent,
+    FormErrorComponent,
     TemplateSelectorComponent
   ],
   imports: [

@@ -1,8 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { Observable } from 'rxjs';
-import { AssemblyService } from '../../shared/assembly.service';
+import { AssemblyService, ERROR } from '../../shared/assembly.service';
 
 @Component({
   selector: 'app-form-viewer',
@@ -14,6 +20,7 @@ export class FormViewerComponent implements OnInit {
   form = new FormGroup({});
   outputFormat = 'PDF';
   documentUrl: string;
+  error: string;
 
   @Input() templateName: string;
   @Input() templateData: any;
@@ -36,14 +43,19 @@ export class FormViewerComponent implements OnInit {
     this.assemblyService
       .generateDocument(this.outputFormat, this.templateName, this.templateData, this.documentUrl)
       .subscribe(documentUrl => {
-        if (this.reusePreviewDocument) {
-          this.documentUrl = documentUrl;
+        if (documentUrl !== ERROR) {
+          this.error = '';
+          if (this.reusePreviewDocument) {
+            this.documentUrl = documentUrl;
+          }
+          this.previewDocument.emit({
+            templateData: this.templateData,
+            documentUrl: this.documentUrl,
+            outputFormat: this.outputFormat
+          });
+        } else {
+          this.error = ERROR;
         }
-        this.previewDocument.emit({
-          templateData: this.templateData,
-          documentUrl: this.documentUrl,
-          outputFormat: this.outputFormat
-        });
       });
   }
 }

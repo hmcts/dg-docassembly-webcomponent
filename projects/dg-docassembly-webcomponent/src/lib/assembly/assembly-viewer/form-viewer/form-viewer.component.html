@@ -6,13 +6,20 @@
                              [outputFormats]="outputFormats"
                              (formatSelected)="setOutputFormat($event)"></app-format-selector>
         <form [formGroup]="form">
-          <formly-form [model]="templateData"
+          <formly-form *ngIf="(uiDefinition | async)?.length > 0"
+                       [model]="templateData"
                        [fields]="(uiDefinition | async) || []"
                        [form]="form">
           </formly-form>
         </form>
+        <app-form-error *ngIf="(uiDefinition | async)?.length === 0"
+                        title="Error loading input form"
+                        message="This means either the input form definition was not found or that it could not be loaded"></app-form-error>
       </div>
       <button class="govuk-button" (click)="onPreview()">Preview</button>
+      <app-form-error *ngIf="error?.length > 0"
+                      title="Error loading document preview"
+                      message="There was a problem generating the document for preview or saving it to the document store"></app-form-error>
     </div>
   </div>
 </main>
