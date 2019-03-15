@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { CommonModule } from '@angular/common';
 import { GovukFormlyTemplatesModule } from '@hmcts/govuk-formly-templates';
+import { FormErrorComponent } from './form-error.component';
 
 class MockAssemblyService {
   getUIDefinition() {}
@@ -34,7 +35,11 @@ describe('FormViewerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [FormViewerComponent, FormatSelectorComponent],
+      declarations: [
+        FormViewerComponent,
+        FormatSelectorComponent,
+        FormErrorComponent
+      ],
       imports: [
         CommonModule,
         FormsModule,

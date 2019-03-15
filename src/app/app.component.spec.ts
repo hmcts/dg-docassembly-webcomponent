@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { AssemblyService } from '../../projects/dg-docassembly-webcomponent/src/lib/assembly/shared/assembly.service';
 import { TemplateSelectorComponent } from '../../projects/dg-docassembly-webcomponent/src/lib/template-selector/template-selector.component';
+import { FormErrorComponent } from '../../projects/dg-docassembly-webcomponent/src/lib/assembly/assembly-viewer/form-viewer/form-error.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -19,6 +20,7 @@ describe('AppComponent', () => {
         AppComponent,
         AssemblyViewerComponent,
         FormatSelectorComponent,
+        FormErrorComponent,
         FormViewerComponent,
         TemplateSelectorComponent
       ],
@@ -39,5 +41,21 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
+  });
+
+  it('should set the template name', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    app.setTemplateName('templateName');
+    expect(app.selectedTemplate).toBe('templateName');
+  });
+
+  it('should preview data', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    app.setPreviewData({ outputFormat: 'outputFormat', documentUrl: 'documentUrl', templateData: {templateData:'templateData'}});
+    expect(app.outputFormat).toBe('outputFormat');
+    expect(app.documentUrl).toBe('documentUrl');
+    expect(app.templateData).toEqual({templateData:'templateData'});
   });
 });

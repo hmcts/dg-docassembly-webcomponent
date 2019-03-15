@@ -10,6 +10,7 @@ import { FormViewerComponent } from './form-viewer/form-viewer.component';
 import { FormatSelectorComponent } from './form-viewer/format-selector/format-selector.component';
 import { AssemblyService } from '../shared/assembly.service';
 import { DocumentViewerModule } from '@hmcts/document-viewer-webcomponent';
+import { FormErrorComponent } from './form-viewer/form-error.component';
 
 class MockAssemblyService {
   getUIDefinition() {}
@@ -39,7 +40,8 @@ describe('AssemblyViewerComponent', () => {
       declarations: [
         AssemblyViewerComponent,
         FormViewerComponent,
-        FormatSelectorComponent
+        FormatSelectorComponent,
+        FormErrorComponent
       ],
       imports: [
         CommonModule,

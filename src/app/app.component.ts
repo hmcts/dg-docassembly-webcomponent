@@ -22,7 +22,7 @@ export class AppComponent {
     this.selectedTemplate = templateName;
   }
 
-  getPreviewData({ outputFormat, documentUrl, templateData }) {
+  setPreviewData({ outputFormat, documentUrl, templateData }) {
     this.documentUrl = documentUrl;
     this.outputFormat = outputFormat;
     this.templateData = templateData

@@ -37,7 +37,7 @@
                        [templateName]="selectedTemplate"
                        [outputFormats]="['PDF']"
                        [templateData]="templateData"
-                       (previewDocument)="getPreviewData($event)"></app-form-viewer>
+                       (previewDocument)="setPreviewData($event)"></app-form-viewer>
       <app-document-viewer *ngIf="documentUrl"
                            [baseUrl]="'api'"
                            [isDM]="false"
