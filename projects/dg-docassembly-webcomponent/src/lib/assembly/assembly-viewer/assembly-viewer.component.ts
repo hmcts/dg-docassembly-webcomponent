@@ -24,7 +24,7 @@ export class AssemblyViewerComponent {
 
   constructor() {}
 
-  previewDocument({ templateData, documentUrl, outputFormat }) {
+  setPreviewData({ templateData, documentUrl, outputFormat }) {
     this.templateData = templateData;
     this.documentUrl = documentUrl;
     this.outputFormat = outputFormat;

@@ -16,8 +16,8 @@ app.use((req, res, next) => {
 });
 
 app.post('/api/template-renditions', (req, res) => {
-  console.log(`heres the template data we want to send ${JSON.stringify(req.body.formPayload)}`);
-  if (req.body.formPayload.referenceNumber === '--error--') {
+  console.log(`heres the template data we want to send ${JSON.stringify(req.body.formPayload)} \n`);
+  if (req.body.formPayload && req.body.formPayload.referenceNumber === '--error--') {
     res.statusCode = 404;
     res.send();
   } else {

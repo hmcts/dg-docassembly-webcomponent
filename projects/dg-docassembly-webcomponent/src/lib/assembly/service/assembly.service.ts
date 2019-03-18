@@ -36,7 +36,7 @@ export class AssemblyService {
           return body.renditionOutputLocation;
         }),
         catchError(this.handleError('generateDocument', ERROR))
-      )
+      );
   }
 
   private handleError<T> (operation = 'operation', result?: T) {

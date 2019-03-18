@@ -3,7 +3,7 @@
                    [templateData]="templateData"
                    [outputFormats]="outputFormats"
                    [reusePreviewDocument]="reusePreviewDocument"
-                   (previewDocument)="[previewDocument($event), showModal()]"></app-form-viewer>
+                   (previewDocument)="[setPreviewData($event), showModal()]"></app-form-viewer>
 </div>
   <div #modalTemplate class="modal">
       <div class="modal-content">

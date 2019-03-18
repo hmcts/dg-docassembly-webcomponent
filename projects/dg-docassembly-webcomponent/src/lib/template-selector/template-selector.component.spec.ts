@@ -24,4 +24,11 @@ describe('TemplateSelectorComponent', () => {
   it('should be created', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should emit template selection event', () => {
+    spyOn(component.selectedTemplate, 'emit');
+    component.selectOutputFormat('templateName');
+
+    expect(component.selectedTemplate.emit).toHaveBeenCalledWith('templateName');
+  });
 });

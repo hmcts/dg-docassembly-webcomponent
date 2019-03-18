@@ -8,7 +8,7 @@ import {
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { Observable } from 'rxjs';
-import { AssemblyService, ERROR } from '../../shared/assembly.service';
+import { AssemblyService, ERROR } from '../../service/assembly.service';
 
 @Component({
   selector: 'app-form-viewer',
@@ -31,7 +31,6 @@ export class FormViewerComponent implements OnInit {
   constructor(private assemblyService: AssemblyService) {}
 
   ngOnInit(): void {
-    console.log(`template name in the form viewer: ${ this.templateName }`);
     this.uiDefinition = this.assemblyService.getUIDefinition(this.templateName);
   }
 

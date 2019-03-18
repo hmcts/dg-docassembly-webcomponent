@@ -25,7 +25,7 @@ export class AppComponent {
   setPreviewData({ outputFormat, documentUrl, templateData }) {
     this.documentUrl = documentUrl;
     this.outputFormat = outputFormat;
-    this.templateData = templateData
+    this.templateData = templateData;
   }
 
   toggleSelection(selectedSetup: string) {

@@ -1,17 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FormViewerComponent } from './form-viewer.component';
-import { AssemblyService } from '../../shared/assembly.service';
+import { AssemblyService, ERROR } from '../../service/assembly.service';
 import { of } from 'rxjs';
 import { FormatSelectorComponent } from './format-selector/format-selector.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FormlyModule } from '@ngx-formly/core';
+import { FormlyFieldConfig, FormlyModule } from '@ngx-formly/core';
 import { CommonModule } from '@angular/common';
 import { GovukFormlyTemplatesModule } from '@hmcts/govuk-formly-templates';
 import { FormErrorComponent } from './form-error.component';
+import Spy = jasmine.Spy;
 
 class MockAssemblyService {
   getUIDefinition() {}
+  generateDocument() {}
 }
 
 describe('FormViewerComponent', () => {
@@ -31,7 +33,8 @@ describe('FormViewerComponent', () => {
       },
       'fieldArray': null
     }
-  ];
+  ] as FormlyFieldConfig[];
+  let generateDocumentSpy: Spy;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -59,10 +62,47 @@ describe('FormViewerComponent', () => {
     component = fixture.componentInstance;
     component.outputFormats = ['PDF'];
     spyOn(mockAssemblyService, 'getUIDefinition').and.returnValue(of(uiDefintion));
+    generateDocumentSpy = spyOn(mockAssemblyService, 'generateDocument');
     fixture.detectChanges();
   });
 
-  it('should be created', () => {
-    expect(component).toBeTruthy();
+  it('should be created and initialised with ui definition', async(() => {
+    component.uiDefinition.subscribe(resp => {
+      expect(resp).toEqual(uiDefintion);
+    });
+  }));
+
+  it('should set output format', () => {
+    component.setOutputFormat('pdf');
+
+    expect(component.outputFormat).toEqual('pdf');
   });
+
+  it('should successfully generate document and preview', async(() => {
+    generateDocumentSpy.and.returnValue(of('document-url'));
+    spyOn(component.previewDocument, 'emit');
+    fixture.detectChanges();
+
+    component.onPreview();
+
+    expect(component.documentUrl).toEqual('document-url');
+    expect(component.previewDocument.emit).toHaveBeenCalledWith({
+      templateData: undefined,
+      documentUrl: 'document-url',
+      outputFormat: 'PDF'
+    });
+  }));
+
+  it('should successfully generate document and preview', async(() => {
+    generateDocumentSpy.and.returnValue(of(ERROR));
+    spyOn(component.previewDocument, 'emit');
+    fixture.detectChanges();
+
+    component.onPreview();
+
+    expect(component.documentUrl).toBeFalsy();
+    expect(component.error).toEqual(ERROR);
+    expect(component.previewDocument.emit).not.toHaveBeenCalled();
+  }));
+
 });

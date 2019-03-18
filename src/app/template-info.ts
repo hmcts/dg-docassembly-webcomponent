@@ -58,11 +58,13 @@ export const templateDataString = `{
       "date":"2019-03-11"
    },
    "orderDirections6":{
-      "order":"The parties must file with the court and exchange skeleton arguments at least three days before the trial, preferably by email if that is possible",
+      "order":"The parties must file with the court and exchange skeleton arguments at least three days before the trial, \
+      preferably by email if that is possible",
       "date":"2019-03-18"
    },
    "orderDirections7":{
-      "order":"Oral evidence will not be permitted at the hearing from a witness whose statement has not been served in accordance with this order or has been served late, except with permission from the Court",
+      "order":"Oral evidence will not be permitted at the hearing from a witness whose statement has not been served \
+      in accordance with this order or has been served late, except with permission from the Court",
       "date":"2019-03-22"
    },
    "hearingisRequired":"true",
