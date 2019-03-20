@@ -1,6 +1,9 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { AssemblyService } from '../shared/assembly.service';
-import { Observable } from 'rxjs';
+import {
+  Component,
+  ElementRef,
+  Input,
+  ViewChild
+} from '@angular/core';
 
 @Component({
   selector: 'app-assembly-viewer',
@@ -9,27 +12,25 @@ import { Observable } from 'rxjs';
 })
 export class AssemblyViewerComponent {
 
-  showForm = false;
+  outputFormat: string;
+  documentUrl: string;
 
-  templateName: string;
-  documentUrl: Observable<string>;
-
+  @Input() outputFormats = [];
+  @Input() templateName: string;
   @Input() templateData: any;
-  @Input() templates: string[];
+  @Input() reusePreviewDocument = true;
 
   @ViewChild('modalTemplate') modalTemplate: ElementRef;
 
-  constructor(private assemblyService: AssemblyService) {}
+  constructor() {}
 
-  setTemplate(templateName: string) {
-    this.templateName = templateName;
-    console.log(`assembly viewer setting the template name: ${templateName}`);
-    this.showForm = true;
+  setPreviewData({ templateData, documentUrl, outputFormat }) {
+    this.templateData = templateData;
+    this.documentUrl = documentUrl;
+    this.outputFormat = outputFormat;
   }
 
-  previewDocument(templateData: any) {
-    this.templateData = templateData;
-    this.documentUrl = this.assemblyService.generateDocument(this.templateName, templateData);
+  showModal() {
     this.modalTemplate.nativeElement.style.display = 'block';
   }
 

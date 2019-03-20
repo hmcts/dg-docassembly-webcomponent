@@ -1,8 +1,8 @@
 {
   "name": "@hmcts/dg-docassembly-webcomponent",
-  "version": "0.1.7",
+  "version": "0.9.1",
   "dependencies": {
-    "@hmcts/document-viewer-webcomponent": "^1.1.2",
+    "@hmcts/document-viewer-webcomponent": "^1.1.3",
     "@ngx-formly/core": "^4.8.2",
     "@hmcts/govuk-formly-templates": "^0.1.14",
     "govuk-frontend": "^2.5.1"

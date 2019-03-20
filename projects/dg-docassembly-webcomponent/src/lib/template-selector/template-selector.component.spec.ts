@@ -1,26 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TemplateSelectorComponent } from './template-selector.component';
-import { AssemblyService } from '../shared/assembly.service';
 import { FormsModule } from '@angular/forms';
-
-class MockAssemblyService {
-  getUIDefinition() {}
-  generateDocument() {}
-}
 
 describe('TemplateSelectorComponent', () => {
   let component: TemplateSelectorComponent;
   let fixture: ComponentFixture<TemplateSelectorComponent>;
 
-  const mockAssemblyService = new MockAssemblyService();
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TemplateSelectorComponent],
-      providers: [
-        { provide: AssemblyService, useFactory: () => mockAssemblyService }
-      ],
       imports: [FormsModule]
     })
     .compileComponents();
@@ -32,7 +21,14 @@ describe('TemplateSelectorComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should be created', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should emit template selection event', () => {
+    spyOn(component.selectedTemplate, 'emit');
+    component.selectOutputFormat('templateName');
+
+    expect(component.selectedTemplate.emit).toHaveBeenCalledWith('templateName');
   });
 });

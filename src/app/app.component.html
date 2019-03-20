@@ -1,9 +1,48 @@
-<details>
-  <summary class="govuk-label">Reference data:</summary>
-  <textarea style="width: 600px; height: 300px; font-size: .8em" [(ngModel)]="templateData"></textarea>
-  <p>{{jsonParseErrors}}</p>
-</details>
-<button class="govuk-button" (click)="saveTemplateData()" type="button">Check and save template data</button>
-
-<app-assembly-viewer [templates]="templates"
-                     [templateData]="templateDataJson"></app-assembly-viewer>
+<div class="govuk-width-container">
+  <div class="aui__toolbar" role="toolbar">
+    <button (click)="toggleSelection('integrated')"
+            class="aui__toolbar-button aui__toolbar-button--items"
+            type="button"
+            role="button">
+      Integrated
+    </button>
+    <button (click)="toggleSelection('client-driven')"
+            class="aui__toolbar-button aui__toolbar-button--items"
+            type="button"
+            role="button">
+      Client driven
+    </button>
+  </div>
+  <main class="govuk-main-wrapper " id="main-content" role="main">
+    <div class="govuk-form-group">
+      <details>
+        <summary class="govuk-label">Reference data:</summary>
+        <textarea class="govuk-textarea"
+                  id="more-detail"
+                  [(ngModel)]="templateDataString" rows="20">
+      {{ templateDataString }}
+    </textarea>
+        <p>{{jsonParseErrors}}</p>
+      </details>
+    </div>
+    <button class="govuk-button" (click)="saveTemplateData()" type="button">Check and save template data</button>
+    <app-template-selector [templates]="templates" (selectedTemplate)="setTemplateName($event)"></app-template-selector>
+    <div *ngIf="setup == 'integrated'">
+      <app-assembly-viewer *ngIf="selectedTemplate"
+                           [templateName]="selectedTemplate"
+                           [templateData]="templateData"></app-assembly-viewer>
+    </div>
+    <div *ngIf="setup == 'client-driven'">
+      <app-form-viewer *ngIf="selectedTemplate"
+                       [templateName]="selectedTemplate"
+                       [outputFormats]="['PDF']"
+                       [templateData]="templateData"
+                       (previewDocument)="setPreviewData($event)"></app-form-viewer>
+      <app-document-viewer *ngIf="documentUrl"
+                           [baseUrl]="'api'"
+                           [isDM]="false"
+                           [contentType]="outputFormat | lowercase"
+                           [url]="documentUrl"></app-document-viewer>
+    </div>
+  </main>
+</div>

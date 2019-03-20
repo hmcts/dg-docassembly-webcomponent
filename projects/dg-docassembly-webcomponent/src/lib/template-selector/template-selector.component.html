@@ -1,0 +1,14 @@
+<form #form="ngForm">
+  <div class="govuk-form-group">
+    <label class="govuk-label" for="sort">
+      Select document template
+    </label>
+    <select (click)="selectOutputFormat(form.value.templateName)"
+            class="govuk-select"
+            id="sort"
+            name="templateName"
+            ngModel>
+      <option *ngFor="let template of templates" [value]="template">{{ template }}</option>
+    </select>
+  </div>
+</form>
