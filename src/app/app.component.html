@@ -6,11 +6,11 @@
             role="button">
       Integrated
     </button>
-    <button (click)="toggleSelection('client-driven')"
+    <button (click)="toggleSelection('service-driven')"
             class="aui__toolbar-button aui__toolbar-button--items"
             type="button"
             role="button">
-      Client driven
+      Service driven
     </button>
   </div>
   <main class="govuk-main-wrapper " id="main-content" role="main">
@@ -32,10 +32,10 @@
                            [templateName]="selectedTemplate"
                            [templateData]="templateData"></app-assembly-viewer>
     </div>
-    <div *ngIf="setup == 'client-driven'">
+    <div *ngIf="setup == 'service-driven'">
       <app-form-viewer *ngIf="selectedTemplate"
                        [templateName]="selectedTemplate"
-                       [outputFormats]="['PDF']"
+                       [outputFormats]="['PDF', 'DOC']"
                        [templateData]="templateData"
                        (previewDocument)="setPreviewData($event)"></app-form-viewer>
       <app-document-viewer *ngIf="documentUrl"
