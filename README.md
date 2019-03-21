@@ -5,7 +5,7 @@
 The docassembly webcomponent is an angular library that provides components to generate a document based on a predefined template customised with user input.
 The library is made up of 3 main components:
 - assembly-viewer, which is the parent component that acts as a wrapper that wires the other components together
-- form-viwer, which retrieves and displays the input form that allows the user to cutomise the generated document
+- form-viewer, which retrieves and displays the input form that allows the user to customise the generated document
 - document-viewer, which enables the user to preview the generated document
 
 ### Integration options
@@ -13,17 +13,13 @@ The library is made up of 3 main components:
 - service-driven setup, more control to the service to define the styling of the component, but also requires the service
   to do the wiring between the form-viewer and the document-viewer (more details below) 
 
-### Building document assembly web component
-- npm run package
-- distributable will be created under dist/dg-docassembly-webcomponent
-
 ### Add as a dependency in your angular app
 - add @hmcts/dg-docassembly-webcomponent as a dependency in package.json
 - import AssemblyModule and declare it in your NgModule imports.
 
   For example:
   ```
-  import { AssemblyModule } from 'dg-docassembly-webcomponent';
+  import { AssemblyModule } from '@hmcts/dg-docassembly-webcomponent';
 
   @NgModule({
     imports: [
@@ -36,23 +32,23 @@ The library is made up of 3 main components:
   ```
     {
         "glob": "**/*",
-        "input": "projects/dg-docassembly-webcomponent/node_modules/@hmcts/document-viewer-webcomponent/assets",
+        "input": "node_modules/@hmcts/dg-docassembly-webcomponent/assets",
         "output": "/assets"
     }
   ```
 - and styles
   ```
   "styles": [
-    "projects/dg-docassembly-webcomponent/node_modules/@hmcts/document-viewer-webcomponent/assets/aui-styles.scss",
+    "node_modules/@hmcts/dg-docassembly-webcomponent/assets/aui-styles.scss",
     ...
   ],
   ```
 - import JS dependencies as scripts within angular.json
   ```
   "scripts": [
-      "projects/dg-docassembly-webcomponent/node_modules/@hmcts/document-viewer-webcomponent/assets/js/pdf.combined.min.js",
-      "projects/dg-docassembly-webcomponent/node_modules/@hmcts/document-viewer-webcomponent/assets/js/pdf_viewer.min.js",
-      "projects/dg-docassembly-webcomponent/node_modules/@hmcts/document-viewer-webcomponent/assets/js/pdf-annotate.min.js"
+      "node_modules/@hmcts/dg-docassembly-webcomponent/assets/js/pdf.combined.min.js",
+      "node_modules/@hmcts/dg-docassembly-webcomponent/assets/js/pdf_viewer.min.js",
+      "node_modules/@hmcts/dg-docassembly-webcomponent/assets/js/pdf-annotate.min.js"
       ...
   ]
   ```
@@ -82,8 +78,32 @@ The library is made up of 3 main components:
                          [contentType]="outputFormat | lowercase"
                          [url]="documentUrl"></app-document-viewer>
     ```  
+### Accessing template data
+Any changes made by the user can be accessed through the 'templateData' property by including a reference to the webcomponent within the service component as follows:
+- HTML
+  ```
+  <app-assembly-viewer *ngIf="selectedTemplate" #assemblyComponent
+                       [templateName]="selectedTemplate"
+                       [templateData]="templateData"></app-assembly-viewer>
+  ```
+- component class
+  ```
+  @ViewChild(AssemblyViewerComponent) assemblyComponent: AssemblyViewerComponent;
+  
+  getAssemblyData() {
+    const documentUrl = assemblyComponent.documentUrl;
+    const templateData = assemblyComponent.templateData;
+  }
+  ```
 ### Backend requirements
 The docassembly component requies access to a number of API endpoints, some of which need to be proxied
-- rpa-dg-docassembly, which depends on dg-template-management and DOCMOSIS
+- rpa-dg-docassembly-api, which depends on rpa-dg-template-management-api and DOCMOSIS
 - proxy access to document store through 'document/' endpoint
 - access to template store (still to be finalised)
+
+
+## Development setup
+
+### Building document assembly web component
+- npm run package
+- distributable will be created under dist/dg-docassembly-webcomponent

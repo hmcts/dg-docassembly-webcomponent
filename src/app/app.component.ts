@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { templateDataString, templates } from './template-info';
 
 @Component({
@@ -17,6 +17,10 @@ export class AppComponent {
   setup = 'integrated';
 
   jsonParseErrors;
+  showAssemblyData = false;
+
+  @ViewChild('assemblyComponent')
+  private assemblyComponent: any;
 
   setTemplateName(templateName: string) {
     this.selectedTemplate = templateName;
@@ -40,6 +44,15 @@ export class AppComponent {
       } catch (error) {
         this.jsonParseErrors = error.toString();
       }
+    }
+  }
+
+  getAssemblyData() {
+    if (this.assemblyComponent) {
+      this.documentUrl = this.assemblyComponent.documentUrl;
+      this.outputFormat = this.assemblyComponent.outputFormat;
+      this.templateData = this.assemblyComponent.templateData;
+      console.log(`this is data from the ${this.documentUrl}`)
     }
   }
 }

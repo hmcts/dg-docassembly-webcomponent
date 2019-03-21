@@ -6,10 +6,12 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AssemblyModule } from '@hmcts/dg-docassembly-webcomponent';
+import { AssemblyDataComponent } from "./assembly-data.component";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AssemblyDataComponent
   ],
   imports: [
     BrowserModule,
