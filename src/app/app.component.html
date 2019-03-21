@@ -6,13 +6,21 @@
             role="button">
       Integrated
     </button>
-    <button (click)="toggleSelection('client-driven')"
+    <button (click)="toggleSelection('service-driven')"
             class="aui__toolbar-button aui__toolbar-button--items"
             type="button"
             role="button">
-      Client driven
+      Service driven
+    </button>
+    <button (click)="showAssemblyData = !showAssemblyData"
+            class="aui__toolbar-button aui__toolbar-button--items"
+            type="button">
+      Show assembly data
     </button>
   </div>
+  <app-assembly-data *ngIf="showAssemblyData" [templateName]="assemblyComponent ? assemblyComponent.templateName : ''"
+                     [documentUrl]="documentUrl" [outputFormat]="outputFormat" [templateData]="templateData"></app-assembly-data>
+  <button *ngIf="showAssemblyData" class="govuk-button" (click)="getAssemblyData()" type="button">Get assembly data</button>
   <main class="govuk-main-wrapper " id="main-content" role="main">
     <div class="govuk-form-group">
       <details>
@@ -28,14 +36,14 @@
     <button class="govuk-button" (click)="saveTemplateData()" type="button">Check and save template data</button>
     <app-template-selector [templates]="templates" (selectedTemplate)="setTemplateName($event)"></app-template-selector>
     <div *ngIf="setup == 'integrated'">
-      <app-assembly-viewer *ngIf="selectedTemplate"
+      <app-assembly-viewer *ngIf="selectedTemplate" #assemblyComponent
                            [templateName]="selectedTemplate"
                            [templateData]="templateData"></app-assembly-viewer>
     </div>
-    <div *ngIf="setup == 'client-driven'">
+    <div *ngIf="setup == 'service-driven'">
       <app-form-viewer *ngIf="selectedTemplate"
                        [templateName]="selectedTemplate"
-                       [outputFormats]="['PDF']"
+                       [outputFormats]="['PDF', 'DOC']"
                        [templateData]="templateData"
                        (previewDocument)="setPreviewData($event)"></app-form-viewer>
       <app-document-viewer *ngIf="documentUrl"

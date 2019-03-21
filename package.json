@@ -7,7 +7,8 @@
     "build": "ng build",
     "copy-license": "cp LICENSE dist/dg-docassembly-webcomponent",
     "copy-readme": "cp README.md dist/dg-docassembly-webcomponent",
-    "copy-files": "npm run copy-license && npm run copy-readme",
+    "copy-assets": "rsync -r projects/dg-docassembly-webcomponent/node_modules/@hmcts/document-viewer-webcomponent/assets dist/dg-docassembly-webcomponent",
+    "copy-files": "npm run copy-license && npm run copy-readme && npm run copy-assets",
     "install-lib-dependencies": "cd projects/dg-docassembly-webcomponent && npm install",
     "build-lib": "npm install && npm run install-lib-dependencies && cd projects/dg-docassembly-webcomponent && ng build",
     "npm-pack": "cd dist/dg-docassembly-webcomponent && npm pack",
@@ -15,6 +16,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "test:coveralls-upload": "cat ./reports/tests/coverage/ng/lcov.info | coveralls",
+    "test:codecov-upload": "codecov -f ./reports/tests/coverage/ng/lcov.info",
     "start:stubs": "node stubs/backend-stubs.js"
   },
   "dependencies": {
