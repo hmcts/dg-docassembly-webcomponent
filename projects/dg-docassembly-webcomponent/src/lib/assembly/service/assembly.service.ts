@@ -25,7 +25,7 @@ export class AssemblyService {
   generateDocument(outputFormat: string, templateName: string, templateData: any, documentUrl: string): Observable<string> {
     const requestBody = {
       formPayload: templateData,
-      outputType: outputFormat.toLowerCase(),
+      outputType: outputFormat.toUpperCase(),
       templateId: btoa(templateName),
       renditionOutputLocation: documentUrl
     };
