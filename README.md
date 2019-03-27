@@ -107,3 +107,11 @@ The docassembly component requies access to a number of API endpoints, some of w
 ### Building document assembly web component
 - npm run package
 - distributable will be created under dist/dg-docassembly-webcomponent
+
+### Running the demo app
+- export DOCMOSIS_ACCESS_KEY=<GET-DOCMOSIS-API-KEY-FROM-TEAM>
+- az login
+- az acr login --name hmcts --subscription 1c4f0704-a29e-403d-b719-b90c34ef14c9
+- docker-compose -f docker-compose-dependencies.yml pull
+- docker-compose -f docker-compose-dependencies.yml up
+- run this in a separate tab: npm start
