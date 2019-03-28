@@ -9,7 +9,7 @@ describe('AssemblyService', () => {
   const templateName = 'template-name';
   const requestBody = {
     formPayload: {},
-    outputType: 'pdf',
+    outputType: 'PDF',
     templateId: btoa(templateName),
     renditionOutputLocation: null
   };

@@ -48,7 +48,6 @@
                        (previewDocument)="setPreviewData($event)"></app-form-viewer>
       <app-document-viewer *ngIf="documentUrl"
                            [baseUrl]="'api'"
-                           [isDM]="false"
                            [contentType]="outputFormat | lowercase"
                            [url]="documentUrl"></app-document-viewer>
     </div>
