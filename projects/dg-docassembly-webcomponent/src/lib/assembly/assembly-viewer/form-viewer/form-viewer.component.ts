@@ -50,7 +50,7 @@ export class FormViewerComponent implements OnInit {
           }
           this.previewDocument.emit({
             templateData: this.templateData,
-            documentUrl: this.documentUrl,
+            documentUrl: documentUrl,
             outputFormat: this.outputFormat
           });
         } else {

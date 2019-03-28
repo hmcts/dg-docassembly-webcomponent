@@ -38,6 +38,7 @@
     <div *ngIf="setup == 'integrated'">
       <app-assembly-viewer *ngIf="selectedTemplate" #assemblyComponent
                            [templateName]="selectedTemplate"
+                           [reusePreviewDocument]="false"
                            [templateData]="templateData"></app-assembly-viewer>
     </div>
     <div *ngIf="setup == 'service-driven'">
