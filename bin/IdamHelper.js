@@ -1,5 +1,3 @@
-'use strict';
-
 const fetch = require('node-fetch');
 const { URLSearchParams } = require('url');
 const btoa = require('btoa');
@@ -9,16 +7,9 @@ const PASSWORD = '4590fgvhbfgbDdffm3lk4j';
 const FIRSTNAME = 'docassembly';
 const LASTNAME = 'testuser';
 
-const Env = require('./Env');
+const { idamUrl, oauthClient, oauthRedirect, oauthSecret } = require('./Env');
 
 class IdamHelper {
-
-  constructor() {
-    this.idamUrl = Env.getIdamUrl();
-    this.client = Env.getOAuthClient();
-    this.secret = Env.getOAuthSecret();
-    this.redirect = Env.getOAuthRedirect();
-  }
 
   async getIdamToken() {
     await this.createUser();
@@ -38,7 +29,7 @@ class IdamHelper {
       surname: LASTNAME
     };
 
-    fetch(`${this.idamUrl}/testing-support/accounts`, {
+    fetch(`${idamUrl}/testing-support/accounts`, {
       method: 'post',
       body:    JSON.stringify(body),
       headers: { 'Content-Type': 'application/json' }
@@ -51,11 +42,11 @@ class IdamHelper {
     const credentials = `${USERNAME}:${PASSWORD}`;
     const authHeader = btoa(credentials);
     const params = new URLSearchParams();
-    params.append('redirect_uri', this.redirect);
-    params.append('client_id', this.client);
+    params.append('redirect_uri', oauthRedirect);
+    params.append('client_id', oauthClient);
     params.append('response_type', 'code');
 
-    return fetch(`${this.idamUrl}/oauth2/authorize`,{
+    return fetch(`${idamUrl}/oauth2/authorize`,{
       method: 'POST',
       body: params,
       headers: {
@@ -74,11 +65,11 @@ class IdamHelper {
     const params = new URLSearchParams();
     params.append('code', code);
     params.append('grant_type', 'authorization_code');
-    params.append('redirect_uri', this.redirect);
-    params.append('client_id', this.client);
-    params.append('client_secret', this.secret);
+    params.append('redirect_uri', oauthRedirect);
+    params.append('client_id', oauthClient);
+    params.append('client_secret', oauthSecret);
 
-    return fetch(`${this.idamUrl}/oauth2/token`,{
+    return fetch(`${idamUrl}/oauth2/token`,{
         method: 'POST',
         body: params,
         headers: {

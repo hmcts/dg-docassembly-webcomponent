@@ -1,26 +1,18 @@
-'use strict';
-
 const otp = require('otp');
 const fetch = require('node-fetch');
 
-const Env = require('./Env');
+const { s2sUrl, s2sSecret, s2sMicroservice } = require('./Env');
 
 class S2SHelper {
-
-  constructor() {
-    this.s2sUrl = Env.getS2sUrl();
-    this.totpSecret = Env.getS2sSecret();
-    this.microservice = Env.getS2sMicroservice();
-  }
 
   async getS2sToken() {
 
     const body = {
-      microservice: this.microservice,
-      oneTimePassword: otp({ secret: this.totpSecret }).totp(),
+      microservice: s2sMicroservice,
+      oneTimePassword: otp({ secret: s2sSecret }).totp(),
     };
 
-    const token = await fetch(`${this.s2sUrl}/lease`, {
+    const token = await fetch(`${s2sUrl}/lease`, {
       headers: { 'Content-Type': 'application/json' },
       body:    JSON.stringify(body),
       method: 'post'
