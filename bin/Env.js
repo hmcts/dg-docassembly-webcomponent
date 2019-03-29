@@ -5,7 +5,8 @@ module.exports = {
   oauthSecret: getEnvOr('FUNCTIONAL_TEST_CLIENT_OAUTH_SECRET', 'AAAAAAAAAAAAAAAA'),
   s2sUrl: getEnvOr('S2S_BASE_URI', 'http://localhost:4502'),
   s2sSecret: getEnvOr('FUNCTIONAL_TEST_CLIENT_S2S_TOKEN', 'AAAAAAAAAAAAAAAA'),
-  s2sMicroservice: getEnvOr('S2S_SERVICE_NAME', 'em_gw')
+  s2sMicroservice: getEnvOr('S2S_SERVICE_NAME', 'em_gw'),
+  proxyPort: getEnvOr('PORT', 9000)
 };
 
 function getEnvOr(property, defaultValue) {

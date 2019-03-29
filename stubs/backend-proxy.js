@@ -1,9 +1,8 @@
-'use strict';
-
 const express = require("express");
 const http = require("http");
 const httpProxy = require('http-proxy');
 
+const { proxyPort } = require('../bin/Env');
 const idamHelper = require('../bin/IdamHelper');
 const s2sHelper = require('../bin/S2SHelper');
 
@@ -20,14 +19,11 @@ const app = express();
 
 loadTokens().then(setupMiddleware);
 
-
-const port = process.env.PORT || '9000';
-
 const server = http.createServer(app);
 
-server.listen(port);
+server.listen(proxyPort);
 
-console.log(`listening on port ${port}`);
+console.log(`listening on port ${proxyPort}`);
 
 function setupMiddleware([idamToken, s2sToken]) {
   app.use((req, res, next) => {
