@@ -1,9 +1,13 @@
 const otp = require('otp');
-const fetch = require('node-fetch');
+const { ApiClient, jsonContentHdr} = require('./ApiClient');
 
 const { s2sUrl, s2sSecret, s2sMicroservice } = require('./Env');
 
 class S2SHelper {
+
+  constructor() {
+    this.apiClient = new ApiClient();
+  }
 
   async getS2sToken() {
 
@@ -12,24 +16,10 @@ class S2SHelper {
       oneTimePassword: otp({ secret: s2sSecret }).totp(),
     };
 
-    const token = await fetch(`${s2sUrl}/lease`, {
-      headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify(body),
-      method: 'post'
-    })
-    .then(checkStatus)
-    .then(res => res.text())
-    .catch(err => console.error(err));
+    const token = await this.apiClient.fetchText(`${s2sUrl}/lease`, jsonContentHdr, JSON.stringify(body));
     console.log(`this is the s2sToken ${token}\n`);
-    return `Bearer ${token}`;
-  }
-}
 
-function checkStatus(res) {
-  if (res.ok) { // res.status >= 200 && res.status < 300
-    return res;
-  } else {
-    throw new fetch.FetchError(res.statusText);
+    return `Bearer ${token}`;
   }
 }
 

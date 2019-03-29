@@ -1,4 +1,3 @@
-const fetch = require('node-fetch');
 const { URLSearchParams } = require('url');
 const btoa = require('btoa');
 
@@ -8,60 +7,47 @@ const FIRSTNAME = 'docassembly';
 const LASTNAME = 'testuser';
 
 const { idamUrl, oauthClient, oauthRedirect, oauthSecret } = require('./Env');
+const { ApiClient, jsonContentHdr, formContentHdr} = require('./ApiClient');
 
 class IdamHelper {
 
+  constructor() {
+    this.apiClient = new ApiClient();
+  }
+
   async getIdamToken() {
+
     await this.createUser();
     const code = await this.getCode();
-    console.log(`this is the code ${code}\n`);
     const token = await this.getToken(code);
-    console.log(`this is the token ${token}\n`);
+    console.log(`Idam code: ${code}\n Idam token: ${token}\n`);
+
     return `Bearer ${token}`;
   }
 
-  createUser() {
+  async createUser() {
+    const userDetails = { email: USERNAME, password: PASSWORD, forename: FIRSTNAME, surname: LASTNAME };
 
-    const body = {
-      email: USERNAME,
-      password: PASSWORD,
-      forename: FIRSTNAME,
-      surname: LASTNAME
-    };
-
-    fetch(`${idamUrl}/testing-support/accounts`, {
-      method: 'post',
-      body:    JSON.stringify(body),
-      headers: { 'Content-Type': 'application/json' }
-    })
-    .then(checkStatus)
-    .catch(err => console.error(err));
+    try {
+      await this.apiClient.post(`${idamUrl}/testing-support/accounts`, jsonContentHdr, JSON.stringify(userDetails));
+    } catch (exception) {
+      console.log(`An exception was thrown while trying to create a user \n ${JSON.stringify(exception)}`);
+    }
   }
 
-  getCode() {
-    const credentials = `${USERNAME}:${PASSWORD}`;
-    const authHeader = btoa(credentials);
+  async getCode() {
+    const authHeader = btoa(`${USERNAME}:${PASSWORD}`);
+    const headers = { ...formContentHdr, 'Authorization': `Basic ${authHeader}` };
     const params = new URLSearchParams();
     params.append('redirect_uri', oauthRedirect);
     params.append('client_id', oauthClient);
     params.append('response_type', 'code');
 
-    return fetch(`${idamUrl}/oauth2/authorize`,{
-      method: 'POST',
-      body: params,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': `Basic ${authHeader}`
-      }
-    })
-    .then(checkStatus)
-    .then(res => res.json())
-    .then(json => json.code)
-    .catch(err => console.error(err));
+    const res = await this.apiClient.fetchJson(`${idamUrl}/oauth2/authorize`, headers, params);
+    return res.code;
   }
 
-  getToken(code) {
-
+  async getToken(code) {
     const params = new URLSearchParams();
     params.append('code', code);
     params.append('grant_type', 'authorization_code');
@@ -69,25 +55,8 @@ class IdamHelper {
     params.append('client_id', oauthClient);
     params.append('client_secret', oauthSecret);
 
-    return fetch(`${idamUrl}/oauth2/token`,{
-        method: 'POST',
-        body: params,
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        }
-      })
-      .then(checkStatus)
-      .then(res => res.json())
-      .then(json => json['access_token'])
-      .catch(err => console.error(err));
-  }
-}
-
-function checkStatus(res) {
-  if (res.ok) { // res.status >= 200 && res.status < 300
-    return res;
-  } else {
-    throw new fetch.FetchError(res);
+    const res = await this.apiClient.fetchJson(`${idamUrl}/oauth2/token`, formContentHdr, params);
+    return res['access_token'];
   }
 }
 
