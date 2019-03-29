@@ -2,9 +2,9 @@ const express = require("express");
 const http = require("http");
 const httpProxy = require('http-proxy');
 
-const { proxyPort } = require('../bin/Env');
-const idamHelper = require('../bin/IdamHelper');
-const s2sHelper = require('../bin/S2SHelper');
+const { proxyPort } = require('./auth/Env');
+const idamHelper = require('./auth/IdamHelper');
+const s2sHelper = require('./auth/S2SHelper');
 
 
 const assemblyProxy = httpProxy.createProxyServer({

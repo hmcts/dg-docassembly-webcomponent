@@ -19,7 +19,7 @@
     "test:coveralls-upload": "cat ./reports/tests/coverage/ng/lcov.info | coveralls",
     "test:codecov-upload": "codecov -f ./reports/tests/coverage/ng/lcov.info",
     "start:stubs": "node stubs/backend-stubs.js",
-    "start:proxy": "node stubs/backend-proxy.js"
+    "start:proxy": "node node-proxy/backend-proxy.js"
   },
   "dependencies": {
     "@angular/animations": "~7.1.0",
