@@ -17,15 +17,13 @@ const documentsProxy = httpProxy.createProxyServer({
 
 const app = express();
 
-loadTokens().then(setupMiddleware);
+async function loadTokens() {
+  const idamToken =  await idamHelper.getIdamToken();
+  const s2sToken = await s2sHelper.getS2sToken();
+  return [idamToken, s2sToken];
+}
 
-const server = http.createServer(app);
-
-server.listen(proxyPort);
-
-console.log(`listening on port ${proxyPort}`);
-
-function setupMiddleware([idamToken, s2sToken]) {
+loadTokens().then(([idamToken, s2sToken]) => {
   app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
@@ -50,11 +48,11 @@ function setupMiddleware([idamToken, s2sToken]) {
       target: 'http://localhost:4603/documents'
     }, next);
   });
-}
+});
 
-async function loadTokens() {
-  const idamToken =  await idamHelper.getIdamToken();
-  const s2sToken = await s2sHelper.getS2sToken();
-  return [idamToken, s2sToken];
-}
+const server = http.createServer(app);
+
+server.listen(proxyPort);
+
+console.log(`listening on port ${proxyPort}`);
 

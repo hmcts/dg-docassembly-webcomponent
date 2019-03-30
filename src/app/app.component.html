@@ -49,13 +49,13 @@
                 <p>{{jsonParseErrors}}</p>
               </details>
               <details>
-                <summary><a class="govuk-link">Show assembly data</a></summary>
+                <summary><a class="govuk-link">Show component data</a></summary>
                 <app-assembly-data *ngIf="selectedTemplate; else notLoaded"
                                    [templateName]="assemblyComponent?.templateName || ''"
                                    [documentUrl]="documentUrl" [outputFormat]="outputFormat"
                                    [templateData]="templateData"></app-assembly-data>
                 <ng-template #notLoaded><span>Assembly component hasn't been loaded yet</span></ng-template>
-                <button *ngIf="selectedTemplate" class="govuk-button" (click)="getAssemblyData()" type="button">Get assembly data
+                <button *ngIf="selectedTemplate" class="govuk-button" (click)="getAssemblyData()" type="button">Pull data from component
                 </button>
               </details>
             </div>
