@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { AssemblyModule } from '@hmcts/dg-docassembly-webcomponent';
-import { AssemblyDataComponent } from "./assembly-data.component";
+import { AssemblyDataComponent } from './assembly-data.component';
 
 describe('AppComponent', () => {
 

@@ -8,7 +8,7 @@ import { templateDataString, templates } from './template-info';
 })
 export class AppComponent implements AfterViewChecked {
 
-  constructor(private cdRef:ChangeDetectorRef) {}
+  constructor(private cdRef: ChangeDetectorRef) {}
 
   templates = templates;
   templateDataString = templateDataString;
@@ -62,7 +62,7 @@ export class AppComponent implements AfterViewChecked {
   }
 
   tabLinkStyle(tab: string) {
-    return `govuk-tabs__tab ${this.setup == tab ? 'govuk-tabs__tab--selected' : ''}`;
+    return `govuk-tabs__tab ${this.setup === tab ? 'govuk-tabs__tab--selected' : ''}`;
   }
 
   ngAfterViewChecked() {

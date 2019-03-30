@@ -32,7 +32,7 @@ export class FormViewerComponent implements OnInit {
 
   ngOnInit(): void {
     this.uiDefinition = this.assemblyService.getUIDefinition(this.templateName);
-    this.outputFormat = this.outputFormats && this.outputFormats.length == 1 ? this.outputFormats[0] : 'PDF';
+    this.outputFormat = this.outputFormats && this.outputFormats.length === 1 ? this.outputFormats[0] : 'PDF';
   }
 
   setOutputFormat(outputFormat: string) {
