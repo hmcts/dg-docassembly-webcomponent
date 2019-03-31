@@ -6,10 +6,10 @@ const PASSWORD = '4590fgvhbfgbDdffm3lk4j';
 const FIRSTNAME = 'docassembly';
 const LASTNAME = 'testuser';
 
-const { idamUrl, oauthClient, oauthRedirect, oauthSecret } = require('./Env');
-const { ApiClient, jsonContentHdr, formContentHdr} = require('./ApiClient');
+const { idamUrl, oauthClient, oauthRedirect, oauthSecret } = require('./config');
+const { ApiClient, jsonContentHdr, formContentHdr} = require('./api-utils');
 
-class IdamHelper {
+class IdamClient {
 
   constructor() {
     this.apiClient = new ApiClient();
@@ -60,4 +60,4 @@ class IdamHelper {
   }
 }
 
-module.exports = new IdamHelper();
+module.exports = new IdamClient();

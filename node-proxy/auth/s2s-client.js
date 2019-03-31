@@ -1,9 +1,9 @@
 const otp = require('otp');
-const { ApiClient, jsonContentHdr} = require('./ApiClient');
+const { ApiClient, jsonContentHdr} = require('./api-utils');
 
-const { s2sUrl, s2sSecret, s2sMicroservice } = require('./Env');
+const { s2sUrl, s2sSecret, s2sMicroservice } = require('./config');
 
-class S2SHelper {
+class S2sClient {
 
   constructor() {
     this.apiClient = new ApiClient();
@@ -23,4 +23,4 @@ class S2SHelper {
   }
 }
 
-module.exports = new S2SHelper();
+module.exports = new S2sClient();

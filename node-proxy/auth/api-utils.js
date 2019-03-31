@@ -3,7 +3,7 @@ const formContentHdr = { 'Content-Type': 'application/x-www-form-urlencoded' };
 const jsonContentHdr = { 'Content-Type': 'application/json' };
 
 
-class ApiClient {
+class ApiUtils {
 
   async fetchJson(url, headers, body) {
     const res = await this.post(url, headers, body);
@@ -36,4 +36,4 @@ class ApiClient {
   }
 }
 
-module.exports = { ApiClient, formContentHdr, jsonContentHdr };
+module.exports = { ApiClient: ApiUtils, formContentHdr, jsonContentHdr };

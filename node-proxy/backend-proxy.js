@@ -2,9 +2,9 @@ const express = require("express");
 const http = require("http");
 const httpProxy = require('http-proxy');
 
-const { proxyPort } = require('./auth/Env');
-const idamHelper = require('./auth/IdamHelper');
-const s2sHelper = require('./auth/S2SHelper');
+const { proxyPort } = require('./auth/config');
+const idamHelper = require('./auth/idam-client');
+const s2sHelper = require('./auth/s2s-client');
 
 
 const assemblyProxy = httpProxy.createProxyServer({
@@ -55,4 +55,3 @@ const server = http.createServer(app);
 server.listen(proxyPort);
 
 console.log(`listening on port ${proxyPort}`);
-
