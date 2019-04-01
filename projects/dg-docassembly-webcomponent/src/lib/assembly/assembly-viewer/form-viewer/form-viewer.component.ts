@@ -1,9 +1,8 @@
 import {
   Component,
   EventEmitter,
-  Input,
-  OnInit,
-  Output
+  Input, OnChanges,
+  Output, SimpleChanges
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
@@ -14,7 +13,7 @@ import { AssemblyService, ERROR } from '../../service/assembly.service';
   selector: 'app-form-viewer',
   templateUrl: './form-viewer.component.html'
 })
-export class FormViewerComponent implements OnInit {
+export class FormViewerComponent implements OnChanges {
 
   uiDefinition: Observable<FormlyFieldConfig[]>;
   form = new FormGroup({});
@@ -30,9 +29,11 @@ export class FormViewerComponent implements OnInit {
 
   constructor(private assemblyService: AssemblyService) {}
 
-  ngOnInit(): void {
-    this.uiDefinition = this.assemblyService.getUIDefinition(this.templateName);
-    this.outputFormat = this.outputFormats && this.outputFormats.length === 1 ? this.outputFormats[0] : 'PDF';
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.templateName) {
+      this.uiDefinition = this.assemblyService.getUIDefinition(this.templateName);
+      this.outputFormat = this.outputFormats && this.outputFormats.length === 1 ? this.outputFormats[0] : 'PDF';
+    }
   }
 
   setOutputFormat(outputFormat: string) {
