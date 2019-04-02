@@ -3,7 +3,7 @@
     <label class="govuk-label" for="sort">
       Select document template
     </label>
-    <select (click)="selectOutputFormat(form.value.templateName)"
+    <select (change)="selectOutputFormat(form.value.templateName)"
             class="govuk-select"
             id="sort"
             name="templateName"
