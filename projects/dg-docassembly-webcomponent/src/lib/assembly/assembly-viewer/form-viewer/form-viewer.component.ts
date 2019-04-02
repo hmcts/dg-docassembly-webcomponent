@@ -25,14 +25,15 @@ export class FormViewerComponent implements OnChanges {
   @Input() templateData: any;
   @Input() outputFormats: string[];
   @Output() previewDocument = new EventEmitter();
-  @Input() reusePreviewDocument = true;
+  @Input() reusePreviewDocument = false;
 
-  constructor(private assemblyService: AssemblyService) {}
+  constructor(private assemblyService: AssemblyService) {
+    this.outputFormat = this.outputFormats && this.outputFormats.length === 1 ? this.outputFormats[0] : 'PDF';
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.templateName) {
       this.uiDefinition = this.assemblyService.getUIDefinition(this.templateName);
-      this.outputFormat = this.outputFormats && this.outputFormats.length === 1 ? this.outputFormats[0] : 'PDF';
     }
   }
 

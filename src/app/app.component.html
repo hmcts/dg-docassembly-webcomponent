@@ -17,7 +17,6 @@
       <ng-container [ngTemplateOutlet]="sidebar"></ng-container>
       <app-assembly-viewer *ngIf="selectedTemplate" #assemblyComponent
                            [templateName]="selectedTemplate"
-                           [reusePreviewDocument]="false"
                            [templateData]="templateData"></app-assembly-viewer>
     </section>
     <section [className]="tabStyle('service-driven')" id="service-driven">
@@ -27,7 +26,7 @@
                        [outputFormats]="['PDF', 'DOC']"
                        [templateData]="templateData"
                        (previewDocument)="setPreviewData($event)"></app-form-viewer>
-      <app-document-viewer *ngIf="documentUrl"
+      <app-document-viewer *ngIf="documentUrl?.length > 0"
                            [contentType]="outputFormat | lowercase"
                            [url]="documentUrl"></app-document-viewer>
     </section>
