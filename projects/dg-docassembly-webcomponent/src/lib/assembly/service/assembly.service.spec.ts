@@ -36,7 +36,7 @@ describe('AssemblyService', () => {
 
   it('should fetch the ui definition from the url passed', function () {
 
-    assemblyService.getUIDefinition(templateName).subscribe(resp => {
+    assemblyService.getUIDefinition(templateName, '').subscribe(resp => {
       expect(resp).toEqual(uiDefintion);
     });
 
@@ -49,7 +49,7 @@ describe('AssemblyService', () => {
 
   it('should return empty definition in case of error', function () {
 
-    assemblyService.getUIDefinition(templateName).subscribe(resp => {
+    assemblyService.getUIDefinition(templateName, '').subscribe(resp => {
       expect(resp).toEqual([]);
     });
 
@@ -62,7 +62,7 @@ describe('AssemblyService', () => {
 
   it('should return url of generated document', function () {
 
-    assemblyService.generateDocument('PDF', templateName, {}, null)
+    assemblyService.generateDocument('PDF', templateName, {}, null, '')
       .subscribe(resp => {
         expect(resp).toEqual('document-url');
     });
@@ -80,7 +80,7 @@ describe('AssemblyService', () => {
 
   it('should return ERROR in case of failure', function () {
 
-    assemblyService.generateDocument('PDF', templateName, {}, null)
+    assemblyService.generateDocument('PDF', templateName, {}, null, '')
       .subscribe(resp => {
         expect(resp).toEqual(ERROR);
     });

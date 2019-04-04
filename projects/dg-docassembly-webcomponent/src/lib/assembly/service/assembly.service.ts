@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { catchError, map } from 'rxjs/operators';
+import * as path from 'path';
 
 const uiDefinitionEndpoint = `api/form-definitions`;
 const generateDocumentEndpoint = `api/template-renditions`;
@@ -16,7 +17,7 @@ export class AssemblyService {
 
   getUIDefinition(templateName: string, baseUrl: string): Observable<FormlyFieldConfig[]> {
     const encTemplateId = btoa(templateName);
-    return this.http.get<any>(`${baseUrl}/${uiDefinitionEndpoint}/${encTemplateId}`)
+    return this.http.get<any>(path.join(baseUrl, uiDefinitionEndpoint, encTemplateId))
       .pipe(
         catchError(this.handleError('getUIDefinition', []))
       );
@@ -30,7 +31,7 @@ export class AssemblyService {
       renditionOutputLocation: documentUrl
     };
 
-    return this.http.post<any>(`${baseUrl}/${generateDocumentEndpoint}`, requestBody)
+    return this.http.post<any>(path.join(baseUrl, generateDocumentEndpoint), requestBody)
       .pipe(
         map(body => {
           return body.renditionOutputLocation;
