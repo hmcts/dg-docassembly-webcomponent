@@ -1,10 +1,16 @@
 const express = require("express");
+const cors = require('cors');
 const http = require("http");
 const httpProxy = require('http-proxy');
 
 const { proxyPort } = require('./auth/config');
 const idamHelper = require('./auth/idam-client');
 const s2sHelper = require('./auth/s2s-client');
+
+const corsOptions = {
+  origin: 'http://localhost:4200',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
 
 
 const assemblyProxy = httpProxy.createProxyServer({
@@ -24,13 +30,8 @@ async function loadTokens() {
 }
 
 loadTokens().then(([idamToken, s2sToken]) => {
-  app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    next();
-  });
 
-  app.use('/api', async (req, res, next) => {
+  app.use('/api', cors(corsOptions), async (req, res, next) => {
 
     req.headers['Authorization'] = idamToken;
     req.headers['ServiceAuthorization'] = s2sToken;
@@ -40,7 +41,7 @@ loadTokens().then(([idamToken, s2sToken]) => {
 
   });
 
-  app.use('/documents', async (req, res, next) => {
+  app.use('/documents', cors(corsOptions), async (req, res, next) => {
 
     req.headers['user-roles'] = 'caseworker';
     req.headers['ServiceAuthorization'] = s2sToken;
