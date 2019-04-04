@@ -3,12 +3,8 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'app-assembly-data',
   template: `
-    <div class="govuk-panel">
-      <h1 class="govuk-panel__title">
-        Assembly Data
-      </h1>
-      <div class="govuk-panel__body">
         <table class="govuk-table">
+          <caption class="govuk-table__caption">Assembly Data</caption>
           <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
             <th class="govuk-table__header" scope="row">template name</th>
@@ -28,8 +24,6 @@ import { Component, Input } from '@angular/core';
           </tr>
           </tbody>
         </table>
-      </div>
-    </div>
   `
 })
 export class AssemblyDataComponent {

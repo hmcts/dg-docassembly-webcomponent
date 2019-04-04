@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { AfterViewChecked, ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { templateDataString, templates } from './template-info';
 
 @Component({
@@ -6,7 +6,10 @@ import { templateDataString, templates } from './template-info';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewChecked {
+
+  constructor(private cdRef: ChangeDetectorRef) {}
+
   templates = templates;
   templateDataString = templateDataString;
   templateData: {};
@@ -17,7 +20,6 @@ export class AppComponent {
   setup = 'integrated';
 
   jsonParseErrors;
-  showAssemblyData = false;
 
   @ViewChild('assemblyComponent')
   private assemblyComponent: any;
@@ -52,7 +54,18 @@ export class AppComponent {
       this.documentUrl = this.assemblyComponent.documentUrl;
       this.outputFormat = this.assemblyComponent.outputFormat;
       this.templateData = this.assemblyComponent.templateData;
-      console.log(`this is data from the ${this.documentUrl}`)
     }
+  }
+
+  tabStyle(tab: string) {
+    return `govuk-tabs__panel ${this.setup !== tab ? 'govuk-tabs__panel--hidden' : ''}`;
+  }
+
+  tabLinkStyle(tab: string) {
+    return `govuk-tabs__tab ${this.setup === tab ? 'govuk-tabs__tab--selected' : ''}`;
+  }
+
+  ngAfterViewChecked() {
+    this.cdRef.detectChanges();
   }
 }

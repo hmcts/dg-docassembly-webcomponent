@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { AssemblyDataComponent } from "./assembly-data.component";
+import { AssemblyDataComponent } from './assembly-data.component';
 
 
 describe('AssemblyDataComponent', () => {

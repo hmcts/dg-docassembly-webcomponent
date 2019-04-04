@@ -114,4 +114,11 @@ The docassembly component requies access to a number of API endpoints, some of w
 - az acr login --name hmcts --subscription 1c4f0704-a29e-403d-b719-b90c34ef14c9
 - docker-compose -f docker-compose-dependencies.yml pull
 - docker-compose -f docker-compose-dependencies.yml up
-- run this in a separate tab: npm start
+- in another terminal window/tab, start the node proxy
+  ```
+  npm run start:proxy
+  ```
+- in another terminal window/tab, start the app
+  ```
+  npm start
+  ```

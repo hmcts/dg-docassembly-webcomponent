@@ -1,9 +1,8 @@
 import {
   Component,
   EventEmitter,
-  Input,
-  OnInit,
-  Output
+  Input, OnChanges,
+  Output, SimpleChanges
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
@@ -14,7 +13,7 @@ import { AssemblyService, ERROR } from '../../service/assembly.service';
   selector: 'app-form-viewer',
   templateUrl: './form-viewer.component.html'
 })
-export class FormViewerComponent implements OnInit {
+export class FormViewerComponent implements OnChanges {
 
   uiDefinition: Observable<FormlyFieldConfig[]>;
   form = new FormGroup({});
@@ -26,13 +25,16 @@ export class FormViewerComponent implements OnInit {
   @Input() templateData: any;
   @Input() outputFormats: string[];
   @Output() previewDocument = new EventEmitter();
-  @Input() reusePreviewDocument = true;
+  @Input() reusePreviewDocument = false;
 
-  constructor(private assemblyService: AssemblyService) {}
+  constructor(private assemblyService: AssemblyService) {
+    this.outputFormat = this.outputFormats && this.outputFormats.length === 1 ? this.outputFormats[0] : 'PDF';
+  }
 
-  ngOnInit(): void {
-    this.uiDefinition = this.assemblyService.getUIDefinition(this.templateName);
-    this.outputFormat = this.outputFormats && this.outputFormats.length == 1 ? this.outputFormats[0] : 'PDF';
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.templateName) {
+      this.uiDefinition = this.assemblyService.getUIDefinition(this.templateName);
+    }
   }
 
   setOutputFormat(outputFormat: string) {
@@ -50,7 +52,7 @@ export class FormViewerComponent implements OnInit {
           }
           this.previewDocument.emit({
             templateData: this.templateData,
-            documentUrl: this.documentUrl,
+            documentUrl: documentUrl,
             outputFormat: this.outputFormat
           });
         } else {

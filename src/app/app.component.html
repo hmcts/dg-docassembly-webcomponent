@@ -1,55 +1,65 @@
 <div class="govuk-width-container">
-  <div class="aui__toolbar" role="toolbar">
-    <button (click)="toggleSelection('integrated')"
-            class="aui__toolbar-button aui__toolbar-button--items"
-            type="button"
-            role="button">
-      Integrated
-    </button>
-    <button (click)="toggleSelection('service-driven')"
-            class="aui__toolbar-button aui__toolbar-button--items"
-            type="button"
-            role="button">
-      Service driven
-    </button>
-    <button (click)="showAssemblyData = !showAssemblyData"
-            class="aui__toolbar-button aui__toolbar-button--items"
-            type="button">
-      Show assembly data
-    </button>
-  </div>
-  <app-assembly-data *ngIf="showAssemblyData" [templateName]="assemblyComponent ? assemblyComponent.templateName : ''"
-                     [documentUrl]="documentUrl" [outputFormat]="outputFormat" [templateData]="templateData"></app-assembly-data>
-  <button *ngIf="showAssemblyData" class="govuk-button" (click)="getAssemblyData()" type="button">Get assembly data</button>
-  <main class="govuk-main-wrapper " id="main-content" role="main">
-    <div class="govuk-form-group">
-      <details>
-        <summary class="govuk-label">Reference data:</summary>
-        <textarea class="govuk-textarea"
-                  id="more-detail"
-                  [(ngModel)]="templateDataString" rows="20">
-      {{ templateDataString }}
-    </textarea>
-        <p>{{jsonParseErrors}}</p>
-      </details>
-    </div>
-    <button class="govuk-button" (click)="saveTemplateData()" type="button">Check and save template data</button>
-    <app-template-selector [templates]="templates" (selectedTemplate)="setTemplateName($event)"></app-template-selector>
-    <div *ngIf="setup == 'integrated'">
+  <div class="govuk-tabs" data-module="tabs">
+    <h2 class="govuk-tabs__title">
+      Contents
+    </h2>
+
+    <ul class="govuk-tabs__list">
+      <li class="govuk-tabs__list-item">
+        <a [className]="tabLinkStyle('integrated')" href="#integrated" (click)="toggleSelection('integrated')">Integrated</a>
+      </li>
+      <li class="govuk-tabs__list-item">
+        <a [className]="tabLinkStyle('service-driven')" href="#service-driven" (click)="toggleSelection('service-driven')">Service driven</a>
+      </li>
+    </ul>
+
+    <section [className]="tabStyle('integrated')" id="integrated">
+      <ng-container [ngTemplateOutlet]="sidebar"></ng-container>
       <app-assembly-viewer *ngIf="selectedTemplate" #assemblyComponent
                            [templateName]="selectedTemplate"
                            [templateData]="templateData"></app-assembly-viewer>
-    </div>
-    <div *ngIf="setup == 'service-driven'">
+    </section>
+    <section [className]="tabStyle('service-driven')" id="service-driven">
+      <ng-container [ngTemplateOutlet]="sidebar"></ng-container>
       <app-form-viewer *ngIf="selectedTemplate"
                        [templateName]="selectedTemplate"
                        [outputFormats]="['PDF', 'DOC']"
                        [templateData]="templateData"
                        (previewDocument)="setPreviewData($event)"></app-form-viewer>
-      <app-document-viewer *ngIf="documentUrl"
-                           [baseUrl]="'api'"
+      <app-document-viewer *ngIf="documentUrl?.length > 0"
                            [contentType]="outputFormat | lowercase"
                            [url]="documentUrl"></app-document-viewer>
-    </div>
-  </main>
+    </section>
+    <ng-template #sidebar>
+        <main class="govuk-main-wrapper">
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+              <app-template-selector [templates]="templates"
+                                     (selectedTemplate)="setTemplateName($event)"></app-template-selector>
+            </div>
+
+            <div class="govuk-grid-column-one-third">
+              <button class="govuk-button" (click)="saveTemplateData()" type="button">Push data into component</button>
+              <details>
+                <summary class="govuk-link"><a class="govuk-link">Review reference data</a></summary>
+                <textarea class="govuk-textarea" id="more-detail-int" [(ngModel)]="templateDataString" rows="20">
+                {{ templateDataString }}
+              </textarea>
+                <p>{{jsonParseErrors}}</p>
+              </details>
+              <details>
+                <summary><a class="govuk-link">Show component data</a></summary>
+                <app-assembly-data *ngIf="selectedTemplate; else notLoaded"
+                                   [templateName]="assemblyComponent?.templateName || ''"
+                                   [documentUrl]="documentUrl" [outputFormat]="outputFormat"
+                                   [templateData]="templateData"></app-assembly-data>
+                <ng-template #notLoaded><span>Assembly component hasn't been loaded yet</span></ng-template>
+                <button *ngIf="selectedTemplate" class="govuk-button" (click)="getAssemblyData()" type="button">Pull data from component
+                </button>
+              </details>
+            </div>
+          </div>
+        </main>
+    </ng-template>
+  </div>
 </div>

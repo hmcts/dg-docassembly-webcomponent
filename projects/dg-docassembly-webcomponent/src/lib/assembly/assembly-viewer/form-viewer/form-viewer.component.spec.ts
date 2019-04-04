@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { GovukFormlyTemplatesModule } from '@hmcts/govuk-formly-templates';
 import { FormErrorComponent } from './form-error.component';
 import Spy = jasmine.Spy;
+import { SimpleChange, SimpleChanges } from '@angular/core';
 
 class MockAssemblyService {
   getUIDefinition() {}
@@ -21,19 +22,19 @@ describe('FormViewerComponent', () => {
   let fixture: ComponentFixture<FormViewerComponent>;
 
   const mockAssemblyService = new MockAssemblyService();
+  const changes = {
+    templateName : new SimpleChange(undefined, 'template-name', true)
+  } as SimpleChanges;
 
-  const uiDefintion = [
-    {
-      'key': 'caseReference',
-      'type': 'input',
-      'hideExpression': null,
-      'templateOptions': {
-        'label': 'Case reference',
-        'options': []
-      },
-      'fieldArray': null
+  const uiDefintion = [{
+    'key': 'caseReference',
+    'type': 'input',
+    'templateOptions': {
+      'label': 'Case reference',
+      'options': []
     }
-  ] as FormlyFieldConfig[];
+  }] as FormlyFieldConfig[];
+
   let generateDocumentSpy: Spy;
 
   beforeEach(async(() => {
@@ -64,6 +65,8 @@ describe('FormViewerComponent', () => {
     spyOn(mockAssemblyService, 'getUIDefinition').and.returnValue(of(uiDefintion));
     generateDocumentSpy = spyOn(mockAssemblyService, 'generateDocument');
     fixture.detectChanges();
+    component.ngOnChanges(changes);
+    fixture.detectChanges();
   });
 
   it('should be created and initialised with ui definition', async(() => {
@@ -85,7 +88,6 @@ describe('FormViewerComponent', () => {
 
     component.onPreview();
 
-    expect(component.documentUrl).toEqual('document-url');
     expect(component.previewDocument.emit).toHaveBeenCalledWith({
       templateData: undefined,
       documentUrl: 'document-url',
