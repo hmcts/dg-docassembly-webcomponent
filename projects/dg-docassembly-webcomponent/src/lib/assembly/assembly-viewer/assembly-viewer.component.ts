@@ -19,6 +19,7 @@ export class AssemblyViewerComponent {
   @Input() templateName: string;
   @Input() templateData: any;
   @Input() reusePreviewDocument = false;
+  @Input() baseUrl = '';
 
   @ViewChild('modalTemplate') modalTemplate: ElementRef;
 

@@ -26,6 +26,7 @@ export class FormViewerComponent implements OnChanges {
   @Input() outputFormats: string[];
   @Output() previewDocument = new EventEmitter();
   @Input() reusePreviewDocument = false;
+  @Input() baseUrl = '';
 
   constructor(private assemblyService: AssemblyService) {
     this.outputFormat = this.outputFormats && this.outputFormats.length === 1 ? this.outputFormats[0] : 'PDF';
@@ -33,7 +34,7 @@ export class FormViewerComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.templateName) {
-      this.uiDefinition = this.assemblyService.getUIDefinition(this.templateName);
+      this.uiDefinition = this.assemblyService.getUIDefinition(this.templateName, this.baseUrl);
     }
   }
 
@@ -43,7 +44,7 @@ export class FormViewerComponent implements OnChanges {
 
   onPreview() {
     this.assemblyService
-      .generateDocument(this.outputFormat, this.templateName, this.templateData, this.documentUrl)
+      .generateDocument(this.outputFormat, this.templateName, this.templateData, this.documentUrl, this.baseUrl)
       .subscribe(documentUrl => {
         if (documentUrl !== ERROR) {
           this.error = '';

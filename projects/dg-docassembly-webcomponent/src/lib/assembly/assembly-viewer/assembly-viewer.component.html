@@ -3,6 +3,7 @@
                    [templateData]="templateData"
                    [outputFormats]="outputFormats"
                    [reusePreviewDocument]="reusePreviewDocument"
+                   [baseUrl]="baseUrl"
                    (previewDocument)="[setPreviewData($event), showModal()]"></app-form-viewer>
 </div>
   <div #modalTemplate class="modal">
@@ -23,6 +24,7 @@
                       <div class="aui-casefile-page">
                         <app-document-viewer *ngIf="documentUrl?.length > 0"
                                              [url]="documentUrl"
+                                             [baseUrl]="baseUrl"
                                              [contentType]="outputFormat | lowercase">
                         </app-document-viewer>
                       </div>

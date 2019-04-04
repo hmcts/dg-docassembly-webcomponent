@@ -14,15 +14,15 @@ export class AssemblyService {
 
   constructor(private http: HttpClient) {}
 
-  getUIDefinition(templateName: string): Observable<FormlyFieldConfig[]> {
+  getUIDefinition(templateName: string, baseUrl: string): Observable<FormlyFieldConfig[]> {
     const encTemplateId = btoa(templateName);
-    return this.http.get<any>(`${uiDefinitionEndpoint}/${encTemplateId}`)
+    return this.http.get<any>(`${baseUrl}/${uiDefinitionEndpoint}/${encTemplateId}`)
       .pipe(
         catchError(this.handleError('getUIDefinition', []))
       );
   }
 
-  generateDocument(outputFormat: string, templateName: string, templateData: any, documentUrl: string): Observable<string> {
+  generateDocument(outputFormat: string, templateName: string, templateData: any, documentUrl: string, baseUrl: string): Observable<string> {
     const requestBody = {
       formPayload: templateData || {},
       outputType: outputFormat.toUpperCase(),
@@ -30,7 +30,7 @@ export class AssemblyService {
       renditionOutputLocation: documentUrl
     };
 
-    return this.http.post<any>(generateDocumentEndpoint, requestBody)
+    return this.http.post<any>(`${baseUrl}/${generateDocumentEndpoint}`, requestBody)
       .pipe(
         map(body => {
           return body.renditionOutputLocation;
