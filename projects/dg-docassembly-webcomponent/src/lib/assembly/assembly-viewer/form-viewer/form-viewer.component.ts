@@ -48,7 +48,10 @@ export class FormViewerComponent implements OnChanges {
         if (documentUrl !== ERROR) {
           this.error = '';
           if (this.reusePreviewDocument) {
-            this.documentUrl = documentUrl;
+            if (documentUrl.indexOf('?') > 0) {
+              this.documentUrl = documentUrl.substring(0, documentUrl.indexOf('?'));
+            }
+            this.documentUrl = documentUrl + '?nocache=' + Math.random();
           }
           this.previewDocument.emit({
             templateData: this.templateData,
