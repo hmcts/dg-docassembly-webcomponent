@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { catchError, map } from 'rxjs/operators';
-import * as path from 'path';
 
 const uiDefinitionEndpoint = `api/form-definitions`;
 const generateDocumentEndpoint = `api/template-renditions`;
@@ -17,7 +16,8 @@ export class AssemblyService {
 
   getUIDefinition(templateName: string, baseUrl: string): Observable<FormlyFieldConfig[]> {
     const encTemplateId = btoa(templateName);
-    return this.http.get<any>(path.join(baseUrl, uiDefinitionEndpoint, encTemplateId))
+
+    return this.http.get<any>(this.formatUrl(baseUrl, `${uiDefinitionEndpoint}/${encTemplateId}`))
       .pipe(
         catchError(this.handleError('getUIDefinition', []))
       );
@@ -31,7 +31,7 @@ export class AssemblyService {
       renditionOutputLocation: documentUrl
     };
 
-    return this.http.post<any>(path.join(baseUrl, generateDocumentEndpoint), requestBody)
+    return this.http.post<any>(this.formatUrl(baseUrl, generateDocumentEndpoint), requestBody)
       .pipe(
         map(body => {
           return body.renditionOutputLocation;
@@ -46,5 +46,10 @@ export class AssemblyService {
       console.log(`${operation} failed: ${error.message}`);
       return of(result as T);
     };
+  }
+
+  formatUrl(baseUrl: string, url: string) {
+    baseUrl = baseUrl.substring(0, baseUrl.endsWith('/') ? baseUrl.length -1 : baseUrl.length);
+    return baseUrl.length > 0 ? `${baseUrl}/${url}` : url;
   }
 }
