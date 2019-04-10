@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const cors = require('cors');
 const http = require("http");
@@ -9,7 +10,7 @@ const s2sHelper = require('./auth/s2s-client');
 
 const corsOptions = {
   origin: 'http://localhost:4200',
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  optionsSuccessStatus: 200
 };
 
 
@@ -22,6 +23,10 @@ const documentsProxy = httpProxy.createProxyServer({
 });
 
 const app = express();
+
+const views = path.join(__dirname, "..", "dist", "dg-docassembly-demo");
+
+app.use(express.static(views));
 
 async function loadTokens() {
   const idamToken =  await idamHelper.getIdamToken();

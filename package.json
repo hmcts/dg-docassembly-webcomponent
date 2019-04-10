@@ -2,8 +2,8 @@
   "name": "@hmcts/dg-docassembly-webcomponent",
   "version": "1.0.4",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
+    "start": "node api/proxy.js",
+    "start:dev": "ng serve",
     "build": "ng build",
     "copy-license": "cp LICENSE dist/dg-docassembly-webcomponent",
     "copy-readme": "cp README.md dist/dg-docassembly-webcomponent",
@@ -13,13 +13,13 @@
     "build-lib": "npm install && npm run install-lib-dependencies && cd projects/dg-docassembly-webcomponent && ng build",
     "npm-pack": "cd dist/dg-docassembly-webcomponent && npm pack",
     "package": "npm run build-lib && npm run copy-files && npm run npm-pack",
+    "build-demo": "ng build dg-docassembly-demo",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "test:coveralls-upload": "cat ./reports/tests/coverage/ng/lcov.info | coveralls",
     "test:codecov-upload": "codecov -f ./reports/tests/coverage/ng/lcov.info",
-    "start:stubs": "node stubs/backend-stubs.js",
-    "start:proxy": "node node-proxy/backend-proxy.js"
+    "start:stubs": "node stubs/backend-stubs.js"
   },
   "dependencies": {
     "@angular/animations": "~7.1.0",

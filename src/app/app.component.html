@@ -17,8 +17,7 @@
       <ng-container [ngTemplateOutlet]="sidebar"></ng-container>
       <app-assembly-viewer *ngIf="selectedTemplate" #assemblyComponent
                            [templateName]="selectedTemplate"
-                           [templateData]="templateData"
-                           [baseUrl]="'http://localhost:9000'"></app-assembly-viewer>
+                           [templateData]="templateData"></app-assembly-viewer>
     </section>
     <section [className]="tabStyle('service-driven')" id="service-driven">
       <ng-container [ngTemplateOutlet]="sidebar"></ng-container>
@@ -26,11 +25,9 @@
                        [templateName]="selectedTemplate"
                        [outputFormats]="['PDF', 'DOC']"
                        [templateData]="templateData"
-                       [baseUrl]="'http://localhost:9000'"
                        (previewDocument)="setPreviewData($event)"></app-form-viewer>
       <app-document-viewer *ngIf="documentUrl?.length > 0"
                            [contentType]="outputFormat | lowercase"
-                           [baseUrl]="'http://localhost:9000'"
                            [url]="documentUrl"></app-document-viewer>
     </section>
     <ng-template #sidebar>

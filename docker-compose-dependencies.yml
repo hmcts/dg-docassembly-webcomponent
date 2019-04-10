@@ -2,6 +2,22 @@
 version: '2.1'
 
 services:
+  rpa-dg-docassembly-api:
+    image: hmcts.azurecr.io/hmcts/dg-docassembly:latest
+    environment:
+      - S2S_BASE_URI=http://service-auth-provider-app:8489
+      - IDAM_API_BASE_URI=http://idam-api:8080
+      - APPINSIGHTS_INSTRUMENTATIONKEY=test-key
+      - DM_STORE_APP_URL=http://dm-store:8080
+      - DOCMOSIS_ACCESS_KEY=
+      - DOCMOSIS_TEMPLATES_ENDPOINT_AUTH=
+    links:
+      - service-auth-provider-app
+    depends_on:
+      - service-auth-provider-app
+    ports:
+      - 4631:8080
+
   idam-api:
     image: hmcts.azurecr.io/hmcts/tidam-api:latest
     healthcheck:
@@ -47,7 +63,6 @@ services:
       #      - Add key for any microservice that will be used: template-management
       - microserviceKeys_em_gw=AAAAAAAAAAAAAAAA
       - microserviceKeys_dg_docassembly_api=AAAAAAAAAAAAAAAA
-      - microserviceKeys_dg_template_management_api=AAAAAAAAAAAAAAAA
       #      logging env vars
       - JSON_CONSOLE_PRETTY_PRINT=false
       - REFORM_SERVICE_TYPE=java
@@ -65,38 +80,6 @@ services:
 
   smtp-server:
     image: mailhog/mailhog
-
-  rpa-dg-docassembly-api:
-    image: hmcts.azurecr.io/hmcts/dg-docassembly-api:latest
-    environment:
-      - S2S_BASE_URI=http://service-auth-provider-app:8489
-      - IDAM_API_BASE_URI=http://idam-api:8080
-      - APPINSIGHTS_INSTRUMENTATIONKEY=test-key
-      - DG_TEMPLATE_MANAGEMENT_API=http://rpa-dg-template-management-api:8080
-      - DM_STORE_APP_URL=http://dm-store:8080
-      - DOCMOSIS_ACCESS_KEY
-    links:
-      - rpa-dg-template-management-api
-      - service-auth-provider-app
-    depends_on:
-      - rpa-dg-template-management-api
-      - service-auth-provider-app
-    ports:
-      - 4631:8080
-
-  rpa-dg-template-management-api:
-    image: hmcts.azurecr.io/hmcts/dg-tmpl-mgmt:latest
-    environment:
-      - S2S_BASE_URI=http://service-auth-provider-app:8489
-      - IDAM_API_BASE_URI=http://idam-api:8080
-      - APPINSIGHTS_INSTRUMENTATIONKEY=test-key
-      - DOCMOSIS_ACCESS_KEY
-    links:
-      - service-auth-provider-app
-    depends_on:
-      - service-auth-provider-app
-    ports:
-      - 4630:8080
 
   dm-store:
     image: hmcts/dm-store:latest
@@ -129,8 +112,6 @@ services:
       - PACKAGES_PROJECT=evidence
       - PACKAGES_NAME=dm-store
       - PACKAGES_VERSION=unkown
-      #      debug mode
-      - JAVA_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005
     links:
       - dm-store-db
       - service-auth-provider-app
