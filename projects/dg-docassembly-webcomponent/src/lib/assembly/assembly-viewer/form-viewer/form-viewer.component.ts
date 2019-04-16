@@ -42,9 +42,9 @@ export class FormViewerComponent implements OnChanges {
     this.outputFormat = outputFormat;
   }
 
-  onPreview() {
+  onPreview(formData) {
     this.assemblyService
-      .generateDocument(this.outputFormat, this.templateName, this.templateData, this.documentUrl, this.baseUrl)
+      .generateDocument(this.outputFormat, this.templateName, { ...this.templateData, ...formData }, this.documentUrl, this.baseUrl)
       .subscribe(documentUrl => {
         if (documentUrl !== ERROR) {
           this.error = '';

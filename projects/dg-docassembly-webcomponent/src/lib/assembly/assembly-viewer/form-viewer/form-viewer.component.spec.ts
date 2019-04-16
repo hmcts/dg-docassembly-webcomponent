@@ -86,7 +86,7 @@ describe('FormViewerComponent', () => {
     spyOn(component.previewDocument, 'emit');
     fixture.detectChanges();
 
-    component.onPreview();
+    component.onPreview({});
 
     expect(component.previewDocument.emit).toHaveBeenCalledWith({
       templateData: undefined,
@@ -100,7 +100,7 @@ describe('FormViewerComponent', () => {
     spyOn(component.previewDocument, 'emit');
     fixture.detectChanges();
 
-    component.onPreview();
+    component.onPreview({});
 
     expect(component.documentUrl).toBeFalsy();
     expect(component.error).toEqual(ERROR);
