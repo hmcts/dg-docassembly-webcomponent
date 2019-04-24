@@ -1,6 +1,6 @@
 {
   "name": "@hmcts/dg-docassembly-webcomponent",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "dependencies": {
     "@hmcts/document-viewer-webcomponent": "^1.1.4",
     "@ngx-formly/core": "^4.8.2",
