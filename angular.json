@@ -29,6 +29,11 @@
                 "glob": "**/**/**/**/**/*",
                 "input": "dist/dg-docassembly-webcomponent/assets",
                 "output": "/assets"
+              },
+              {
+                "glob": "**/**/**/**/**/**/**/*",
+                "input": "dist/dg-docassembly-webcomponent/assets/govuk-frontend/assets",
+                "output": "/assets"
               }
             ],
             "styles": [
