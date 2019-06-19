@@ -1,6 +1,6 @@
 export const templates = [
   'CV-CMC-GOR-ENG-0004-UI-Test.docx',
-  'CV-CMC-GOR-ENG-0004-UI-Test v2.docx',
+  'CV-CMC-GOR-ENG-0004-UI-Testv2.docx',
   'CV-CMC-GOR-ENG-00023.docx',
   'FL-FRM-APP-ENG-00002.docx',
   'FL-FRM-GOR-ENG-00007.docx',
