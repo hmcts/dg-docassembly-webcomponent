@@ -30,7 +30,7 @@
     "@angular/platform-browser": "^7.2.7",
     "@angular/platform-browser-dynamic": "^7.2.7",
     "@angular/router": "~7.1.0",
-    "core-js": "^2.5.4",
+    "core-js": "^2.6.12",
     "http-proxy": "^1.17.0",
     "node-fetch": "^2.3.0",
     "otp": "^0.1.3",
